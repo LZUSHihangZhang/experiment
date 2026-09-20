@@ -1,0 +1,216 @@
+% !TEX program = xelatex
+\documentclass[10pt,a4paper]{article}
+\usepackage{extarrows} 
+% ===== Essential Packages =====
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[UTF8, fontset=none]{ctex}
+\usepackage{xeCJK}
+\usepackage{enumitem}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
+
+% ===== Math & Symbols =====
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{braket}
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+
+% ===== Code Listings =====
+\usepackage{listings}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings, breakable}
+
+% ===== Misc =====
+\usepackage{lipsum}
+\usepackage{footmisc}
+\usepackage[margin=1in]{geometry}
+\usepackage{diagbox}
+\usepackage{mathtools}
+\usepackage{tensor}
+
+\lstset{
+	basicstyle=\small\ttfamily,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{green!60!black},
+	stringstyle=\color{red},
+	frame=single,
+	breaklines=true,
+	showstringspaces=false,
+	tabsize=2,
+	captionpos=b
+}
+\author{
+	张世航 \\
+	学号:320230938701 \\
+	\texttt{zhshihang2023@lzu.edu.cn}
+}
+\title{电光效应}
+
+\begin{document}
+	\maketitle
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		线圈电流 I/A& 磁场\(B/mT= \frac{8\mu_0 NI}{5^{\frac{3}{2}}R} \)& 电压表
+		输出
+		V/V & $\frac{R_B}{R_0}=\frac{V_0(V_+-V)}{V(V_+-V_0)}$ & $\frac{R_B-R_0}{R_0}$ \\
+		\hline
+		0.000& 0.  & 1.5875 &  &  \\
+		\hline
+		0.050& 0.08991763 & 1.5894 &  &  \\
+		\hline
+		0.100& 0.17983526 & 1.5934 &  &  \\
+		\hline
+		0.150& 0.26975289 & 1.5986 &  &  \\
+		\hline
+		0.200& 0.35967052 & 1.6045 &  &  \\
+		\hline
+		0.250& 0.44958815 &  &  &  \\
+		\hline
+		0.300& 0.53950578 &  &  &  \\
+		\hline
+		0.350& 0.62942341 &  &  &  \\
+		\hline
+		0.400& 0.71934104 &  &  &  \\
+		\hline
+		0.450& 0.80925867 &  &  &  \\
+		\hline
+		0.500& 0.8991763 &  &  &  \\
+		\hline
+		0.550& 0.98909393 &  &  &  \\
+		\hline
+		0.600& 1.07901156 &  &  &  \\
+		\hline
+		0.650& 1.16892919 &  &  &  \\
+		\hline
+		0.700& 1.25884682 &  &  &  \\
+		\hline
+		0.750& 1.34876445 &  &  &  \\
+		\hline
+		0.800& 1.43868208 &  &  &  \\
+		\hline
+		0.850& 1.52859971 &  &  &  \\
+		\hline
+		0.900&  1.61851731 &  &  &  \\
+		\hline
+		0.950& 1.70843494 &  &  &  \\
+		\hline
+		1.000& 1.79835257 &  &  &  \\
+		\hline
+		1.050& 1.8882702 &  &  &  \\
+		\hline
+		1.100& 1.97818783 &  &  &  \\
+		\hline
+		1.150& 2.06810546 &  &  &  \\
+		\hline
+		1.200& 2.15802309 &  &  &  \\
+		\hline
+	\end{tabular}
+	\\
+
+
+
+
+	\begin{tabular}{|c|c|c|}
+		\hline
+		线圈电流 I/A & 磁场B/mT  & 传感器输出\(V_{\text{输出}}/{V}\) \\
+		\hline
+		0.000& 0.  &  \\
+		\hline
+		0.050& 0.08991763 &  \\
+		\hline
+		0.100& 0.17983526 &   \\
+		\hline
+		0.150& 0.26975289 &   \\
+		\hline
+		0.200& 0.35967052 &   \\
+		\hline
+		0.250& 0.44958815 &   \\
+		\hline
+		0.300& 0.53950578 & \\
+		\hline
+		0.350& 0.62942341 &   \\
+		\hline
+		0.400& 0.71934104 &    \\
+		\hline
+		0.450& 0.80925867 &  \\
+		\hline
+		0.500& 0.8991763 &   \\
+		\hline
+		0.550& 0.98909393 &    \\
+		\hline
+		0.600& 1.07901156 &   \\
+		\hline
+		0.650& 1.16892919 &   \\
+		\hline
+		0.700& 1.25884682 &    \\
+		\hline
+		0.750& 1.34876445 &  \\
+		\hline
+		0.800& 1.43868208 &    \\
+		\hline
+		0.850& 1.52859971 &   \\
+		\hline
+		0.900&  1.61851731 &    \\
+		\hline
+		0.950& 1.70843494 & \\
+		\hline
+		1.000& 1.79835257 &    \\
+		\hline
+		1.050& 1.8882702 &   \\
+		\hline
+		1.100& 1.97818783 &   \\
+		\hline
+		1.150& 2.06810546 &   \\
+		\hline
+		1.200& 2.15802309 &    \\
+		\hline
+    \end{tabular}
+\\
+
+	\begin{tabular}{|c|c|}
+		\hline
+		被测电流 I/A&传感器输出电压 \(V_{\text{输入}}/V\)\\
+		\hline
+		0& \\
+		\hline
+		0.5& \\
+		\hline
+		1.0& \\
+		\hline
+		1.5& \\
+		\hline
+		2.0& \\
+		\hline
+		2.5& \\
+		\hline
+		3.0& \\
+		\hline
+		3.5& \\
+		\hline
+		4.0& \\
+		\hline
+		4.5& \\
+		\hline
+		5.0& \\
+		\hline
+	\end{tabular}
+\end{document}

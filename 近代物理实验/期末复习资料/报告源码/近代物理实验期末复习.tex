@@ -1,0 +1,1594 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+\usepackage{extarrows}
+
+% ===== Essential Packages =====
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[UTF8, fontset=none]{ctex}
+\usepackage{xeCJK}
+\usepackage{enumitem}
+
+% CJK Fonts
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
+
+% ===== Math & Symbols =====
+\usepackage{amsmath, amssymb, mathrsfs, braket, mathtools, tensor, physics}
+\usepackage{slashed}
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[table]{xcolor}
+\usepackage{array, multirow, tabularx, booktabs}
+\usepackage{siunitx}
+\usepackage{caption, subcaption}
+\usepackage{adjustbox}
+\usepackage{diagbox}
+
+% ===== Geometry =====
+\usepackage[margin=1in, headheight=15pt]{geometry}
+\usepackage{footmisc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tocloft}
+\usepackage{needspace}
+
+% ===== Code Listings =====
+\usepackage{listings}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings, breakable}
+
+\lstset{
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=2,
+    captionpos=b
+}
+
+% ===== Header/Footer =====
+\pagestyle{fancy}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+
+% ===== Custom Commands =====
+\newcommand{\boxeq}[1]{\begin{equation}\boxed{#1}\end{equation}}
+\newcommand{\hl}[1]{\textbf{\color{red}#1}}
+\newcommand{\exam}[1]{\textbf{\color{blue!70!black}【考点】#1}}
+\newcommand{\answer}[1]{\vspace{2pt}\noindent\textbf{\color{teal!80!black}▸ 参考答案：}#1\vspace{4pt}}
+\newcommand{\qa}[2]{\exam{#1}\answer{#2}}
+
+% ===== Document Info =====
+\title{\textbf{\Huge 近代物理实验\\期末复习资料（含答案）}}
+\author{
+    张世航 \\
+    学号：320230938701 \\
+    \texttt{zhshihang2023@lzu.edu.cn}
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\vspace{2cm}
+\begin{center}
+    \fbox{\parbox{0.8\textwidth}{
+        \centering
+        \textbf{本资料涵盖四个实验：}
+
+        \vspace{0.3cm}
+        实验一：电光效应 \\
+        实验二：光纤光栅温度与应力传感 \\
+        实验三：磁共振成像（NMR/MRI） \\
+        实验四：巨磁电阻效应（GMR）
+    }}
+\end{center}
+
+\vspace{0.3cm}
+\begin{center}
+    \fcolorbox{teal}{white}{\parbox{0.85\textwidth}{
+        \centering
+        \textbf{\color{teal}使用说明：}本资料在每个考点下方附有详细参考答案，\\
+        蓝色标题为问题，绿色段落为答案。先尝试自己回答，再对照答案。
+    }}
+\end{center}
+
+\vspace{1cm}
+\hrule
+\vspace{0.5cm}
+\begin{center}
+    兰州大学 \quad 物理科学与技术学院
+\end{center}
+
+\newpage
+
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 第一部分：电光效应
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{电光效应}
+
+\section{实验目的}
+\begin{enumerate}
+    \item 了解晶体电光效应（泡克尔斯效应）的基本原理。
+    \item 掌握电光晶体的消光比和半波电压的测试方法。
+    \item 观察电光调制现象，了解倍频调制原理。
+    \item 学习电光调制在光纤通讯中的应用。
+\end{enumerate}
+
+\section{实验原理}
+
+\subsection{电光效应概述}
+某些晶体在外电场作用下，构成晶体的原子、分子的排列和它们之间的相互作用随外电场 \(E\) 的改变发生变化，因而某些原来各向同性的晶体，在电场作用下显示出折射率的改变。这种由于外电场作用而引起晶体折射率改变的现象称为\textbf{电光效应}。
+
+折射率 \(n\) 和外电场 \(E\) 的关系如下：
+\begin{equation}
+    \frac{1}{n^2} - \frac{1}{n_0^2} = rE + RE^2 + \cdots
+\end{equation}
+其中 \(n_0\) 为晶体未加外电场时某一方向的折射率，\(r\) 是线性电光系数，\(R\) 是二次电光系数。
+
+\begin{itemize}
+    \item \textbf{线性电光效应（泡克尔斯效应）}：由电场一次项引起，只在无对称中心的晶体中存在。
+    \item \textbf{二次电光效应（克尔效应）}：由电场二次项引起。
+\end{itemize}
+
+\qa{
+    区分泡克尔斯效应（Pockels效应）和克尔效应（Kerr效应）的条件是什么？
+}{
+    \begin{itemize}
+        \item \textbf{起源不同}：泡克尔斯效应由折射率变化展开式中的电场一次项（$rE$）主导，即 $\Delta(1/n^2) = rE$；克尔效应由二次项（$RE^2$）主导，即 $\Delta(1/n^2) = RE^2$。
+        \item \textbf{对称性要求不同}：泡克尔斯效应\textbf{只在无对称中心的晶体}（如铌酸锂 LiNbO$_3$）中存在，因为一阶电光系数 $r_{ijk}$ 是三阶张量，在有对称中心的晶体中必为零；克尔效应没有对称性限制，任何介质（包括液体、玻璃）中都可能存在。
+        \item \textbf{效应强度不同}：在无对称中心的晶体中，泡克尔斯效应通常远强于克尔效应，因此克尔效应可忽略。
+        \item \textbf{实际应用}：泡克尔斯效应常用于制作高速电光调制器、Q开关等；克尔效应常用于超高速光开关（如 Kerr 盒）。
+    \end{itemize}
+}
+
+\subsection{折射率椭球}
+对于各向异性的晶体，在不同方向上晶体具有不同的折射率。折射率椭球用来描述晶体的光学性质。如果晶体是各向同性的，折射率椭球就简化为一个球面。
+
+铌酸锂（LiNbO\(_3\)）晶体是常用的电光晶体，其电光系数矩阵形式为：
+\begin{equation}
+    r_{ij} =
+    \begin{pmatrix}
+        0 & -r_{22} & r_{13} \\
+        0 & r_{22} & r_{13} \\
+        0 & 0 & r_{33} \\
+        0 & r_{51} & 0 \\
+        r_{51} & 0 & 0 \\
+        -r_{22} & 0 & 0
+    \end{pmatrix}
+\end{equation}
+
+\subsection{半波电压}
+半波电压 \(V_\pi\) 是使输出光强从极小变化到极大（即相位差改变 \(\pi\)）所需要施加的电压值，是衡量电光调制器性能的重要参数。
+
+通过测量晶体在不同外加电压下的输出光强，可以拟合出光强—电压曲线：
+\begin{equation}
+    I = (I_{\max} - I_{\min}) \sin^2\left(\frac{\pi U/V_\pi + \delta_0}{2}\right) + I_{\min}
+\end{equation}
+
+\subsection{消光比}
+消光比 \(M\) 定义为最大光强与最小光强之比：
+\begin{equation}
+    M = \frac{I_{\max}}{I_{\min}}
+\end{equation}
+消光比越高，调制器的性能越好。实际计算中，对正负两种接法测得的消光比取几何平均：
+\begin{equation}
+    M = \sqrt{M^+ M^-}
+\end{equation}
+
+\subsection{电光系数计算}
+电光系数 \(r_{22}\) 由半波电压计算得到：
+\begin{equation}
+    r_{22} = \frac{\lambda d}{2 n_o^3 V_\pi l}
+\end{equation}
+其中 \(\lambda\) 为光波长，\(d\) 为晶体厚度，\(l\) 为晶体长度，\(n_o\) 为寻常光折射率。
+
+\subsection{正弦信号电光调制与倍频现象}
+当调制信号为正弦波时，输出光强为：
+\begin{equation}
+    I = \frac{1}{2} I_0 \left[ 1 - \cos\left(\frac{\pi V_{DC}}{V_\pi}\right) \cos\left(\frac{\pi V_m}{V_\pi} \sin\omega t\right) + \sin\left(\frac{\pi V_{DC}}{V_\pi}\right) \sin\left(\frac{\pi V_m}{V_\pi} \sin\omega t\right) \right]
+\end{equation}
+
+当 \(V_{DC}=0\) 时，产生\textbf{倍频调制现象}，输出信号频率为输入信号频率的两倍：
+\begin{equation}
+    I \approx \frac{I_0}{8} \left(\pi \frac{V_m}{V_\pi}\right)^2 \left[1 - \cos(2\omega t)\right]
+\end{equation}
+
+\qa{
+    倍频调制现象是如何产生的？需要什么条件？
+}{
+    \textbf{产生条件}：当直流偏压 $V_{DC}=0$（即不加直流偏压或偏压为零）时，工作点位于光强调制曲线的极值点（对称点）附近。
+
+    \textbf{物理原因}：当 $V_{DC}=0$ 时，$\cos(\pi V_{DC}/V_\pi)=1$，$\sin(\pi V_{DC}/V_\pi)=0$，输出光强表达式中 $\cos(\pi V_m \sin\omega t / V_\pi)$ 项展开后，一次谐波（$\omega$ 项）系数为零，保留的二次谐波（$2\omega$ 项）成为主导项。因此输出信号的频率为输入调制信号频率的两倍。
+
+    \textbf{数学推导}：对小调制信号 $V_m/V_\pi \ll 1$，有
+    \[
+    I \approx \frac{I_0}{8}\left(\pi\frac{V_m}{V_\pi}\right)^2[1-\cos(2\omega t)]
+    \]
+    上式不含 $\omega$ 项，只含直流项和 $2\omega$ 项，故称为倍频调制。
+
+    \textbf{实际意义}：通过观察波形是否出现倍频，可以辅助判断半波电压的取值（当输出波形频率翻倍时，对应工作点在曲线的极值点）。
+}
+
+\section{实验仪器}
+\begin{itemize}
+    \item DHEO-1 晶体电光效应实验仪
+    \item 铌酸锂（LiNbO\(_3\)）晶体
+    \item 激光器、偏振片、光电探测器
+    \item \(\lambda/4\) 波片
+    \item 数字电压表、示波器
+\end{itemize}
+
+\section{实验内容与数据处理}
+
+\subsection{直流电压扫描——测量半波电压和消光比}
+两种接线方式：
+\begin{itemize}
+    \item \textbf{红正黑负}（正电压扫描）
+    \item \textbf{红负黑正}（负电压扫描）
+\end{itemize}
+
+每种接线方式有两种数据处理方法：
+
+\subsubsection{拟合法}
+使用公式 \(P = A\sin(kU) + B\cos(kU) + b = R\cos(kU-\varphi) + b\) 拟合，利用梯度下降（Adam优化器）以二次方之和为损失函数得到最佳拟合曲线。
+
+红正黑负拟合结果：
+\begin{align}
+    A &= -0.0113,\ B = -0.2104,\ k = 0.6367,\ b = 0.2250 \\
+    R &= 0.2107,\ \varphi = -1.6245\ \text{rad}
+\end{align}
+
+化为标准形式得到：
+\begin{align}
+    I_{\max}^+ &= 0.4357\ \text{mW} \\
+    I_{\min}^+ &= 0.0143\ \text{mW} \\
+    V_\pi^+ &= 360\ \text{V} \\
+    M^+ &= 30.47
+\end{align}
+
+红负黑正拟合结果：
+\begin{align}
+    I_{\max}^- &= 0.5083\ \text{mW} \\
+    I_{\min}^- &= 0.0297\ \text{mW} \\
+    V_\pi^- &= 389\ \text{V} \\
+    M^- &= 17.1
+\end{align}
+
+\subsubsection{极值法}
+直接读取测量数据中的极大值和极小值及其对应电压。
+
+红正黑正极值法：
+\begin{align}
+    U_{\max} &= 380\ \text{V},\ I_{\max} = 0.435\ \text{mW} \\
+    U_{\min} &= 780\ \text{V},\ I_{\min} = 0.018\ \text{mW} \\
+    V_\pi &= 400\ \text{V},\ M = 24.17
+\end{align}
+
+\subsection{最终结果}
+
+\textbf{拟合法}
+\begin{equation}
+    \boxed{V_\pi = 374.5\ \text{V}}
+\end{equation}
+\begin{equation}
+    \boxed{M = \sqrt{M^+ M^-} = 22.8}
+\end{equation}
+\begin{equation}
+    \boxed{r_{22} = 6.22 \times 10^{-12}\ \text{m/V}}
+\end{equation}
+
+\textbf{极值法}
+\begin{equation}
+    \boxed{V_\pi^{(\text{极})} = 390.0\ \text{V}}
+\end{equation}
+\begin{equation}
+    \boxed{M^{(\text{极})} = 21.36}
+\end{equation}
+\begin{equation}
+    \boxed{r_{22}^{(\text{极})} = 6.13 \times 10^{-12}\ \text{m/V}}
+\end{equation}
+
+\qa{
+    半波电压 $V_\pi$ 的物理意义是什么？实验中如何测量？
+}{
+    \textbf{物理意义}：半波电压是使电光晶体中 o 光和 e 光之间产生 $\pi$ 相位差所需要施加的电压。此时，输出光强从一个极值变化到另一个极值（从最小到最大，或从最大到最小）。它是衡量电光调制器性能的核心参数——$V_\pi$ 越小，调制越容易，器件性能越好。
+
+    \textbf{测量方法}：实验中通过直流电压扫描，记录不同外加电压 $U$ 下的输出光强 $I$，有两种数据处理方式：
+    \begin{enumerate}
+        \item \textbf{拟合法}：用 $I = R\cos(kU-\varphi)+b$ 拟合数据，从拟合参数中提取 $V_\pi = \pi/k$。
+        \item \textbf{极值法}：直接找到相邻极大值和极小值对应的电压，$V_\pi$ = $|U_{\max} - U_{\min}|$。
+    \end{enumerate}
+    为消除系统误差，通常对正电压和负电压两种接线方式分别测量，取平均值。
+}
+
+\qa{
+    消光比 $M$ 的定义是什么？它的物理含义是什么？
+}{
+    \textbf{定义}：消光比 $M = I_{\max}/I_{\min}$，即输出光强的最大值与最小值之比。
+
+    \textbf{物理含义}：消光比衡量电光调制器将光信号\"开\"与\"关\"的对比度。消光比越高，说明调制器在通断两种状态下的光强差异越大，信号质量越好。理想情况下 $M \to \infty$，但由于晶体不均匀、偏振片不理想、散射等因素，实际消光比是有限的。本实验中拟合法得到 $M = 22.8$（取正负接法的几何平均）。
+
+    \textbf{计算公式}：$M = \sqrt{M^+ M^-}$，其中 $M^+$ 和 $M^-$ 分别为正电压和负电压接法测得的消光比。使用几何平均的原因是需要将两种接线方式下不对称的测量结果进行综合。
+}
+
+\section{误差分析}
+\begin{enumerate}
+    \item 晶体光学均匀性、偏振片取向精度、入射光发散角与外电场均匀性等因素制约了半波电压、消光比的测量精度。
+    \item 电压与光功率通过数字电表读数，数字信号的不连续性带来读数误差。
+    \item 环境噪音对光路造成轻微扰动，影响光功率实测值。
+    \item 理论推导中近似认为折射率主轴旋转的角度与 \(X_3\) 坐标无关，引入了系统误差。
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 第二部分：光纤光栅
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{光纤光栅温度与应力传感}
+
+\section{实验目的}
+\begin{enumerate}
+    \item 了解光纤布拉格光栅（FBG）的基本原理与传感特性。
+    \item 掌握光纤光栅温度传感的测量方法，标定温度灵敏度系数。
+    \item 掌握光纤光栅应力传感的测量方法，标定应力灵敏度系数。
+    \item 学习光纤光栅传感器在工程中的应用。
+\end{enumerate}
+
+\section{实验原理}
+
+\subsection{光纤布拉格光栅（FBG）}
+光纤布拉格光栅是利用光纤材料的光敏性，通过紫外光曝光在光纤纤芯内形成折射率周期性变化的一种无源光器件。其作用类似于一个窄带滤波器或反射镜。
+
+FBG的中心反射波长（布拉格波长）为：
+\begin{equation}
+    \lambda_B = 2n_{\text{eff}} \Lambda
+\end{equation}
+其中 \(n_{\text{eff}}\) 为纤芯有效折射率，\(\Lambda\) 为光栅周期。
+
+\qa{
+    布拉格条件 $\lambda_B = 2n_{\text{eff}}\Lambda$ 的物理意义是什么？
+}{
+    \textbf{物理意义}：该公式描述了光纤布拉格光栅（FBG）的中心反射波长与光纤结构参数之间的关系。
+    \begin{itemize}
+        \item $n_{\text{eff}}$ 是纤芯的有效折射率，反映光在纤芯中的传播速度。
+        \item $\Lambda$ 是光栅周期（折射率调制的空间周期）。
+        \item 公式表明：当一束宽带光入射到FBG中时，只有满足 $\lambda_B = 2n_{\text{eff}}\Lambda$ 的波长分量会被光栅反射回来，其他波长则透射过去。
+    \end{itemize}
+    这一条件来源于布拉格衍射原理：光在周期性折射率结构中传播时，从每个折射率变化界面反射的光发生相干干涉，只有当波长满足上述相位匹配条件时，各反射光才同相叠加形成强反射峰。
+
+    \textbf{传感原理的核心}：任何能改变 $n_{\text{eff}}$ 或 $\Lambda$ 的外界因素（温度、应变等）都会导致 $\lambda_B$ 发生漂移。通过测量 $\lambda_B$ 的漂移量，就可以反推出外界物理量（温度、应力）的变化。这就是FBG作为传感器的基本原理。
+}
+
+\subsection{温度传感原理}
+温度变化 \(\Delta T\) 引起波长漂移的主要机制：
+\begin{enumerate}
+    \item \textbf{热光效应}：温度变化导致光纤有效折射率变化。
+    \item \textbf{热膨胀效应}：温度变化导致光栅周期变化。
+\end{enumerate}
+
+波长漂移与温度变化的关系：
+\begin{equation}
+    \frac{\Delta \lambda_B}{\lambda_B} = \alpha \Delta T
+\end{equation}
+其中 \(\alpha\) 为温度灵敏度系数（包含热光系数和热膨胀系数）。
+
+温度灵敏度标定：
+\begin{equation}
+    \frac{\Delta \lambda_B}{\Delta T} = \alpha \lambda_B
+\end{equation}
+
+\qa{
+    温度灵敏度系数 $\alpha$ 的物理意义是什么？如何通过实验计算它？
+}{
+    \textbf{物理意义}：温度灵敏度系数 $\alpha$ 表示单位温度变化引起FBG布拉格波长的相对漂移量。它综合了\textbf{热光效应}（温度导致折射率变化）和\textbf{热膨胀效应}（温度导致光栅周期变化）两种机制：
+    \[
+    \alpha = \frac{1}{n_{\text{eff}}}\frac{\mathrm{d}n_{\text{eff}}}{\mathrm{d}T} + \frac{1}{\Lambda}\frac{\mathrm{d}\Lambda}{\mathrm{d}T}
+    \]
+    其中第一项为热光系数，第二项为热膨胀系数。
+
+    \textbf{实验计算方法}：
+    \begin{enumerate}
+        \item 测量不同温度 $T$ 下FBG的反射波长 $\lambda_B$，作 $\lambda_B$-$T$ 图。
+        \item 对数据点进行线性拟合，得到斜率 $\frac{\Delta \lambda_B}{\Delta T}$。
+        \item 利用公式 $\alpha = \frac{1}{\bar{\lambda}_B} \cdot \frac{\Delta \lambda_B}{\Delta T}$ 计算。
+    \end{enumerate}
+    本实验测得：$\dfrac{\Delta \lambda_B}{\Delta T} = 0.0102\ \text{nm/K}$，$\bar{\lambda}_B \approx 1545\ \text{nm}$，故 $\alpha = 0.0102/1545 \approx 6.60\times10^{-6}\ \text{K}^{-1}$。
+}
+
+\subsection{应力传感原理}
+轴向应力（应变）\(\epsilon\) 引起波长漂移的主要机制：
+\begin{enumerate}
+    \item \textbf{弹光效应}：应变导致有效折射率变化。
+    \item \textbf{光栅周期变化}：应变直接改变光栅周期。
+\end{enumerate}
+
+波长漂移与应变的关系：
+\begin{equation}
+    \frac{\Delta \lambda_B}{\lambda_B} = (1-P_e)\epsilon
+\end{equation}
+其中 \(P_e\) 为有效弹光系数。对于光纤光栅，\((1-P_e) \approx 0.22\)。
+
+\subsection{力与波长的关系}
+实验中通过悬挂砝码施加拉力，拉力 \(\Delta G\) 与波长漂移满足：
+\begin{equation}
+    \frac{\Delta \lambda_B}{\lambda_B} = 0.22 k \Delta G
+\end{equation}
+其中 \(k\) 为转换系数。
+
+\qa{
+    温度引起波长漂移的两种机制分别是什么？应变引起波长漂移的两种机制又是什么？
+}{
+    \noindent\textbf{温度引起的两种机制}：
+    \begin{enumerate}
+        \item \textbf{热光效应}：温度升高导致光纤材料的折射率发生变化（$\mathrm{d}n_{\text{eff}}/\mathrm{d}T$），从而改变布拉格波长。
+        \item \textbf{热膨胀效应}：温度升高导致光栅的物理周期 $\Lambda$ 发生变化（$\mathrm{d}\Lambda/\mathrm{d}T$），从而改变布拉格波长。
+    \end{enumerate}
+
+    \noindent\textbf{应变引起的两种机制}：
+    \begin{enumerate}
+        \item \textbf{弹光效应}：轴向应变导致纤芯的折射率发生变化（通过光弹张量改变 $n_{\text{eff}}$）。
+        \item \textbf{光栅周期变化}：轴向应变直接拉伸或压缩光栅，改变栅距 $\Lambda$。
+    \end{enumerate}
+    两种效应的灵敏度系数分别为 $\alpha$ 和 $(1-P_e)$，实验测得 $\alpha \approx 6.60\times10^{-6}\ \text{K}^{-1}$，$(1-P_e) \approx 0.22$。
+}
+
+\section{实验仪器}
+\begin{itemize}
+    \item 光纤布拉格光栅传感器
+    \item 宽带光源（ASE 或 SLD）
+    \item 光谱分析仪（OSA）
+    \item 温控装置（加热炉）
+    \item 砝码组、支架
+    \item 光纤跳线、耦合器
+\end{itemize}
+
+\section{实验内容与数据处理}
+
+\subsection{波长随温度的变化}
+测量不同温度下 FBG 的反射波长，作 \(\lambda_B-T\) 图，线性拟合得到温度灵敏度。
+
+实验结果：
+\begin{align}
+    \frac{\Delta \lambda_B}{\Delta T} &= 0.0102\ \text{nm/K} \\
+    \alpha &= \frac{0.0102\ \text{nm/K}}{\bar{\lambda}_B} = 6.60 \times 10^{-6}\ \text{K}^{-1}
+\end{align}
+
+\subsection{波长随拉力的变化}
+测量不同拉力下 FBG 的反射波长，分两个过程：
+\begin{enumerate}
+    \item \textbf{拉力增大过程}（加载）
+    \item \textbf{拉力减小过程}（卸载）
+\end{enumerate}
+
+实验结果：
+\begin{align}
+    \frac{\Delta \lambda_B}{\Delta G} &= 0.0012\ \text{nm/N} \\
+    k &= \frac{0.0012\ \text{nm/N}}{0.22\lambda_B} = 3.52 \times 10^{-6}\ \text{N}^{-1}
+\end{align}
+
+\subsection{波长与砝码质量的关系}
+将拉力转换为质量（\(G = mg\)），得到 \(\lambda_B\)-\(m\) 关系图：
+\begin{itemize}
+    \item 加载过程拟合斜率：0.0117 nm/g
+    \item 卸载过程拟合斜率：0.0113 nm/g
+\end{itemize}
+
+\qa{
+    加载（拉力增大）和卸载（拉力减小）过程的曲线为什么不重合？这种现象称为什么？
+}{
+    \textbf{现象名称}：\hl{回滞效应（Hysteresis）}。
+
+    \textbf{原因分析}：
+    \begin{enumerate}
+        \item \textbf{光纤的粘弹性}：光纤包层和涂覆层是高分子材料，具有粘弹性。加载时材料的形变不能立即响应，卸载时也不能立即恢复，导致加载和卸载路径不同。
+        \item \textbf{机械摩擦}：悬挂砝码的装置存在机械摩擦和间隙，加载和卸载过程中的摩擦力方向相反，导致实际作用在光纤上的力存在差异。
+        \item \textbf{光纤蠕变}：长时间受力后光纤内部可能存在微小的不可逆形变。
+    \end{enumerate}
+    \textbf{实验处理}：通常取加载和卸载过程的平均值作为最终结果，或者分别给出两条拟合线的参数供分析使用。
+}
+
+\section{关键公式总结}
+\begin{itemize}
+    \item 布拉格条件：\(\lambda_B = 2n_{\text{eff}}\Lambda\)
+    \item 温度灵敏度：\(\Delta \lambda_B/\lambda_B = \alpha \Delta T\)
+    \item 应变灵敏度：\(\Delta \lambda_B/\lambda_B = (1-P_e)\epsilon\)
+    \item 拉力灵敏度：\(\Delta \lambda_B/\lambda_B = 0.22 k \Delta G\)
+\end{itemize}
+
+\qa{
+    光纤布拉格光栅（FBG）传感器有哪些主要应用？
+}{
+    \textbf{主要应用领域}：
+    \begin{enumerate}
+        \item \textbf{结构健康监测}：桥梁、大坝、建筑物、飞行器的应变和温度监测。FBG可以嵌入结构内部，实现分布式传感。
+        \item \textbf{石油/天然气工业}：井下温度和压力监测，耐高温高压、抗电磁干扰。
+        \item \textbf{航空航天}：机翼、发动机叶片的应力监测，轻质、可复用。
+        \item \textbf{电力系统}：变压器、电缆的温度监测（FBG不导电，安全性好）。
+        \item \textbf{医疗领域}：手术中温度/压力传感器、内窥镜等。
+        \item \textbf{海洋工程}：海底光缆的张力监测、海水温度剖面测量。
+    \end{enumerate}
+    \textbf{FBG传感器的优势}：体积小、重量轻、抗电磁干扰、耐腐蚀、可复用、可串联成传感器阵列实现准分布式测量。
+}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 第三部分：磁共振成像
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{磁共振成像（NMR/MRI）}
+
+\section{实验目的}
+\begin{enumerate}
+    \item 理解核磁共振的基本原理（核自旋、磁矩、拉莫尔频率）。
+    \item 理解磁体的中心频率和拉莫尔频率的关系，掌握拉莫尔频率的测量方法。
+    \item 理解90°脉冲和180°脉冲的作用。
+    \item 掌握弛豫时间的计算方法，反演 \(T_1\) 和 \(T_2\) 谱。
+    \item 理解梯度回波序列成像原理及其成像过程。
+\end{enumerate}
+
+\section{核磁共振基本原理}
+
+\subsection{原子核的自旋与磁矩}
+考虑一个自旋 \(1/2\) 粒子（如氢核 \(^1\text{H}\)），磁矩算符为：
+\begin{equation}
+    \hat{\boldsymbol{\mu}} = \gamma \hat{\mathbf{S}} = \frac{\gamma\hbar}{2} \boldsymbol{\sigma}
+\end{equation}
+其中 \(\boldsymbol{\sigma}=(\sigma_x, \sigma_y, \sigma_z)\) 为 Pauli 矩阵，\(\gamma\) 为旋磁比。
+
+\qa{
+    磁共振成像中为什么选用氢核（$^1$H）进行成像？其他核素是否也可以？
+}{
+    \textbf{选用氢核的原因}：
+    \begin{enumerate}
+        \item \textbf{磁化强度最高}：在所有常见磁性核中，氢核的旋磁比 $\gamma$ 最大，在相同磁场下其核磁共振信号最强。
+        \item \textbf{生物丰度最高}：氢原子占生物组织原子总数的 $2/3$，人体内大量的水分子和脂肪分子中都含有氢核，保证有足够的信号来源。
+        \item \textbf{一个水分子的磁矩相当于两个\"裸露\"轻核的磁矩}，进一步增强了信号强度。
+    \end{enumerate}
+    \textbf{其他核素}：理论上，任何自旋量子数 $I>0$ 的原子核都可以进行核磁共振，如 $^{19}$F、$^{23}$Na、$^{31}$P 等。但在常规临床 MRI 中，由于氢核的信号最强、丰度最大，\textbf{通常仅对氢核成像}（所得图像称为\"质子像\"）。其他核素的 MRI 主要用于特定研究（如 $^{19}$F 示踪、$^{31}$P 代谢成像等）。
+}
+
+\subsection{静磁场中的拉莫尔进动}
+在静磁场 \(\mathbf{B}_0 = B_0 \hat{\mathbf{z}}\) 中，磁矩绕磁场方向进动，进动频率为\textbf{拉莫尔频率}：
+\boxeq{\omega_0 = \gamma B_0}
+
+能级分裂：自旋在磁场中分为两个能级，能量差为：
+\begin{equation}
+    \Delta E = \gamma \hbar B_0 = \hbar \omega_0
+\end{equation}
+
+\subsection{热平衡与宏观磁化}
+热平衡时，低能级上的核子数略多于高能级：
+\begin{equation}
+    \frac{N_H}{N_L} = e^{-\Delta E/kT} \approx 1 - \frac{\gamma B_0 \hbar}{kT}
+\end{equation}
+在300K、1T场强下，高能级与低能级粒子数相差约 \(7/10^6\)，导致宏观磁化矢量 \(\mathbf{M}_0\) 出现（指向 \(B_0\) 方向）。
+
+\section{射频脉冲与旋转坐标系}
+
+\subsection{射频磁场}
+沿 \(x\) 方向的射频磁场，频率为 \(\omega\)，振幅为 \(2B_1\)：
+\begin{equation}
+    \mathbf{B}_1(t) = 2B_1 \cos(\omega t)\,\hat{\mathbf{x}}
+\end{equation}
+
+\subsection{变换到旋转坐标系}
+定义绕 \(z\) 轴以角频率 \(\omega\) 旋转的幺正算符：
+\begin{equation}
+    \hat{U}_0(t) = e^{-i\omega t \hat{S}_z/\hbar}
+\end{equation}
+
+旋转坐标系中的有效哈密顿量：
+\boxeq{\hat{H}_{\text{rot}} = \hat{U}_0^\dagger \hat{H} \hat{U}_0 - i\hbar \hat{U}_0^\dagger \frac{\partial \hat{U}_0}{\partial t}}
+
+在共振条件 \(\omega = -\gamma B_0\) 下，有效哈密顿量简化为：
+\boxeq{\hat{H}_{\text{rot}} = -\gamma B_1 \hat{S}_x}
+
+这是一个与时间无关的哈密顿量，使得求解时间演化成为可能。
+
+\subsection{翻转角}
+时间演化算符：
+\begin{equation}
+    \hat{U}_{\text{rot}}(t) = \exp\left(-\frac{i}{\hbar}\hat{H}_{\text{rot}} t\right) = \exp\left(i \frac{\gamma B_1 t}{2} \sigma_x\right)
+\end{equation}
+
+定义\textbf{翻转角}：
+\boxeq{\theta = \gamma B_1 t}
+
+\qa{
+    90° 脉冲和 180° 脉冲的物理意义是什么？它们分别在实验中起到什么作用？
+}{
+    翻转角 $\theta = \gamma B_1 t$，其中 $B_1$ 是射频磁场的振幅，$t$ 是脉冲持续时间。
+
+    \textbf{90° 脉冲}（$\theta = \pi/2$）：
+    \begin{itemize}
+        \item \textbf{作用}：将宏观磁化矢量从 $+z$ 方向（静磁场方向）完全翻转到 $xy$ 平面（横向平面）。
+        \item \textbf{效果}：产生最大的横向磁化，这是 NMR 信号的来源。接收线圈检测到的正是横向磁化的进动信号。
+        \item \textbf{类比}：就像将一根竖立的磁针推倒到水平面上。
+    \end{itemize}
+
+    \textbf{180° 脉冲}（$\theta = \pi$）：
+    \begin{itemize}
+        \item \textbf{作用一（反转）}：将磁化矢量从 $+z$ 翻转到 $-z$ 方向。可用于测量 $T_1$（反转恢复法）。
+        \item \textbf{作用二（重聚）}：对已经翻转到 $xy$ 平面并开始散相的磁化矢量施加，使各自旋的相位反转，从而实现重聚（产生自旋回波）。这是标准自旋回波序列的核心。
+        \item \textbf{类比}：就像操场上跑步的人听到哨音后立即反向跑，经过相同时间后所有人回到起点（重聚）。
+    \end{itemize}
+}
+
+\section{弛豫机制}
+
+\subsection{\(T_1\) 弛豫（自旋—晶格弛豫）}
+物理机制：质子吸收射频波能量后处于高能态，通过释放能量恢复到热平衡状态的过程，称为自旋—晶格弛豫。反映纵向磁化 \(M_z\) 恢复到 \(M_0\) 的速度。
+
+\subsection{\(T_2\) 弛豫（自旋—自旋弛豫）}
+物理机制：自旋—自旋相互作用导致质子自旋磁矩 \(xy\) 分量相位同步性丧失，称为自旋—自旋弛豫。此过程仅依赖质子自旋耦合，不需要与外界交换能量，发生速率很快。
+
+\qa{
+    $T_1$ 弛豫和 $T_2$ 弛豫的物理机制有何本质区别？
+}\\{
+    \begin{tabular}{|c|c|c|}
+        \hline
+        & \textbf{$T_1$ 弛豫（纵向弛豫）} & \textbf{$T_2$ 弛豫（横向弛豫）} \\
+        \hline
+        \textbf{别称} & 自旋—晶格弛豫 & 自旋—自旋弛豫 \\
+        \hline
+        \textbf{物理机制} & 自旋系统通过与周围晶格的热交换 & 自旋之间的相互作用导致各自旋的进动相位失去同步性 \\
+        \hline
+        \textbf{能量交换} & \hl{涉及能量交换}——自旋将能量传递给晶格 & \hl{不涉及能量交换}——只是相位失相干 \\
+        \hline
+        \textbf{恢复的物理量} & 纵向磁化 $M_z$ 恢复到平衡值 $M_0$ & 横向磁化 $M_{xy}$ 衰减到零 \\
+        \hline
+        \textbf{时间尺度} & 较慢（本实验 $T_1 \approx 600\ \text{ms}$） & 较快（本实验 $T_2 \approx 242\ \text{ms}$） \\
+        \hline
+        \textbf{一般关系} & $T_1 \ge T_2$ & — \\
+        \hline
+    \end{tabular}
+
+    \textbf{一句话总结}：$T_1$ 是能量从自旋系统\"漏\"到晶格的过程（能量耗散）；$T_2$ 是各自旋\"步调不一致\"的过程（相位失谐），不涉及能量损失。
+}
+
+实验测量值：
+\begin{align}
+    T_1 &= 600.2\ \text{ms} \\
+    T_2 &= 242.2\ \text{ms}
+\end{align}
+
+\section{成像原理}
+
+\subsection{梯度磁场与空间编码}
+为了区分不同位置的自旋，在静磁场上叠加线性梯度磁场。
+
+\subsubsection{频率编码（\(x\) 方向）}
+施加梯度 \(G_x\)，则 \(x\) 处的自旋进动频率为：
+\begin{equation}
+    \omega(x) = \gamma (B_0 + G_x x) = \omega_0 + \gamma G_x x
+\end{equation}
+
+基带信号：
+\begin{equation}
+    s(t) = \int \rho(x) \, e^{-i \gamma G_x x t} \, \mathrm{d}x
+\end{equation}
+
+定义空间频率：
+\begin{equation}
+    k_x = \frac{\gamma G_x t}{2\pi}
+\end{equation}
+则 \(s(k_x) = \int \rho(x) e^{-i 2\pi k_x x} \mathrm{d}x\)，即 \(s(k_x)\) 是 \(\rho(x)\) 的傅里叶变换。
+
+\subsubsection{相位编码（\(y\) 方向）}
+短暂施加 \(y\) 方向的梯度 \(G_y\)，持续 \(T_y\)：
+\begin{equation}
+    \phi(y) = \gamma G_y y T_y
+\end{equation}
+
+基带信号：
+\begin{equation}
+    s(k_x, k_y) = \iint \rho(x,y) \, e^{-i 2\pi (k_x x + k_y y)} \, \mathrm{d}x\,\mathrm{d}y
+\end{equation}
+
+\qa{
+    频率编码和相位编码有什么区别？它们各自如何发挥作用？
+}{
+    \begin{tabular}{|c|c|c|}
+        \hline
+        & \textbf{频率编码} & \textbf{相位编码} \\
+        \hline
+        \textbf{施加时机} & 信号采集期间\textbf{持续}施加 & 信号采集前\textbf{短暂}施加，然后撤掉 \\
+        \hline
+        \textbf{梯度方向} & $x$ 方向（记作 $G_x$） & $y$ 方向（记作 $G_y$） \\
+        \hline
+        \textbf{编码方式} & 不同位置 $x$ 的自旋具有不同的进动频率 $\omega(x)$ & 不同位置 $y$ 的自旋积累不同的相位 $\phi(y)$ \\
+        \hline
+        \textbf{对应的 $k$ 空间轴} & $k_x = \gamma G_x t / 2\pi$（连续采样） & $k_y = \gamma G_y T_y / 2\pi$（离散步进） \\
+        \hline
+        \textbf{类比} & 用不同音高区分不同位置 & 用不同的\"起跑时间\"区分不同位置 \\
+        \hline
+    \end{tabular}
+
+    \textbf{协同工作}：两者结合实现二维空间编码。每个 $k_y$ 值对应一次相位编码步，在该步下采集一条完整的 $k_x$ 线。通过改变 $G_y$ 的幅度（步进），遍历整个 $k_y$ 空间，最终填满二维 $k$ 空间数据矩阵，经二维逆傅里叶变换得到图像。
+
+    \textbf{注意}：频率编码只需要一次（每行 $k_x$ 数据），相位编码需要重复多次（$N_y$ 次，对应 $k_y$ 的点数），因此相位编码是 MRI 成像速度的主要限制因素。
+}
+
+\subsection{\(k\) 空间与图像重建}
+信号 \(s(\mathbf{k})\) 是质子密度 \(\rho(\mathbf{r})\) 的傅里叶变换。对 \(s(\mathbf{k})\) 做逆傅里叶变换即得到图像：
+\boxeq{\rho(\mathbf{r}) = \iint s(\mathbf{k}) \, e^{i 2\pi \mathbf{k}\cdot\mathbf{r}} \, \mathrm{d}^2 k}
+
+\qa{
+    什么是 $k$ 空间？$k$ 空间数据与最终图像之间是什么数学关系？
+}{
+    \textbf{$k$ 空间的定义}：$k$ 空间是 MRI 中的\textbf{空间频率域}，其坐标定义为梯度磁场的时间积分：
+    \[
+    k_x = \frac{\gamma}{2\pi}\int_0^t G_x(\tau)\,\mathrm{d}\tau,\quad
+    k_y = \frac{\gamma}{2\pi}\int_0^t G_y(\tau)\,\mathrm{d}\tau
+    \]
+    简单地说，$k$ 空间就是 MRI 的原始数据采集空间。
+
+    \textbf{数学关系}：
+    \begin{enumerate}
+        \item \textbf{前向关系}：采集到的 $k$ 空间信号 $s(\mathbf{k})$ 是质子密度 $\rho(\mathbf{r})$ 的傅里叶变换：
+        \[
+        s(\mathbf{k}) = \int \rho(\mathbf{r})\, e^{-i2\pi\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}^2 r
+        \]
+        \item \textbf{反向关系}：对 $k$ 空间数据做逆傅里叶变换即得到图像（质子密度分布）：
+        \[
+        \rho(\mathbf{r}) = \int s(\mathbf{k})\, e^{i2\pi\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}^2 k
+        \]
+    \end{enumerate}
+
+    \textbf{直观理解}：$k$ 空间的一个点不直接对应图像的一个像素，而是包含整个图像的频率信息。$k$ 空间的中心区域包含图像的对比度信息（低频），外围区域包含图像的细节信息（高频）。在 MRI 中通常先填充 $k$ 空间的中心区域，这就是为什么 MRI 扫描中最早获得的信号决定了图像的主要对比度。
+}
+
+\subsection{选层梯度}
+在施加射频脉冲的同时，沿 \(z\) 方向施加梯度 \(G_z\)。层厚为：
+\begin{equation}
+    \Delta z = \frac{\Delta \omega}{\gamma G_z}
+\end{equation}
+
+\subsection{三维成像}
+定义 \(\mathbf{k}(t) = \frac{\gamma}{2\pi} \int_0^t \mathbf{G}(\tau)\, \mathrm{d}\tau\)，则：
+\begin{equation}
+    s(\mathbf{k}) = \int \rho(\mathbf{r}) \, e^{-i 2\pi \mathbf{k}\cdot\mathbf{r}} \, \mathrm{d}^3 r
+\end{equation}
+
+\qa{
+    NMR（核磁共振）三要素是什么？它们各自在实验中扮演什么角色？
+}{
+    NMR三要素是：\hl{核、磁、共振}。
+
+    \begin{enumerate}
+        \item \textbf{核——\"磁性\"原子核}：
+        \begin{itemize}
+            \item 具有自旋量子数 $I>0$ 的原子核才具有磁矩 $\mu$。
+            \item 实验中选用 $^1$H 核（氢质子），因其 $\gamma$ 最大、丰度最高。
+            \item 在静磁场中，核自旋能级发生分裂（塞曼分裂），形成低能态和高能态。
+        \end{itemize}
+        \item \textbf{磁——静磁场 $B_0$ 和射频磁场 $B_1$}：
+        \begin{itemize}
+            \item \textbf{静磁场 $B_0$}：使核自旋极化，产生宏观磁化矢量 $M_0$；确定拉莫尔频率 $\omega_0 = \gamma B_0$。
+            \item \textbf{射频磁场 $B_1$}：施加共振频率的射频脉冲，使自旋从低能态跃迁到高能态（吸收），同时将磁化矢量翻转到横向平面（产生信号）。
+            \item \textbf{梯度磁场}（MRI特有）：叠加在 $B_0$ 上，实现空间位置的编码。
+        \end{itemize}
+        \item \textbf{共振——$\omega_{\text{RF}} = \omega_0 = \gamma B_0$}：
+        \begin{itemize}
+            \item 当射频场的频率恰好等于自旋在静磁场中的拉莫尔进动频率时，发生共振吸收。
+            \item 共振是NMR的核心条件：只有满足共振条件，才能高效地将能量传递给自旋系统，产生可观测的信号。
+            \item 在旋转坐标系中，共振条件下含时哈密顿量变为定常哈密顿量 $-\gamma B_1\hat{S}_x$，使问题可严格求解。
+        \end{itemize}
+    \end{enumerate}
+}
+
+\section{关键公式总结}
+\begin{itemize}
+    \item 拉莫尔频率：\(\omega_0 = \gamma B_0\)
+    \item 能级差：\(\Delta E = \hbar\omega_0\)
+    \item 翻转角：\(\theta = \gamma B_1 t\)
+    \item 共振条件：\(\omega_{\text{RF}} = \omega_0\)
+    \item 信号-\(k\)空间关系：\(s(\mathbf{k}) = \mathcal{F}\{\rho(\mathbf{r})\}\)
+    \item 图像重建：\(\rho(\mathbf{r}) = \mathcal{F}^{-1}\{s(\mathbf{k})\}\)
+\end{itemize}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 第四部分：巨磁电阻效应
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{巨磁电阻效应（GMR）}
+
+\section{实验目的}
+\begin{enumerate}
+    \item 掌握巨磁电阻（GMR）效应原理，测量不同磁场下巨磁电阻阻值 \(R_B\)，作 \(R_B/R_0\)-\(B\) 关系图，求电阻相对变化率 \((R_B-R_0)/R_0\) 的最大值。
+    \item 学习巨磁电阻传感器定标方法，计算巨磁电阻传感器灵敏度。
+    \item 测量巨磁电阻传感器输出电压 \(V_{\text{输出}}\) 与通电导线电流 \(I\) 的关系。
+    \item 理解自旋阀巨磁电阻效应的原理和应用。
+\end{enumerate}
+
+\section{实验原理}
+
+\subsection{磁电阻效应概述}
+在通有电流的金属或半导体上施加磁场时，其电阻值发生明显变化的现象称为\textbf{磁电阻效应}（1856年由W.汤姆孙发现）。
+
+磁电阻大小通常以电阻率的相对变化率表示：
+\begin{equation}
+    \frac{\Delta\rho}{\rho_0} = \frac{\rho_H - \rho_0}{\rho_0}
+\end{equation}
+或用电阻的相对变化表示：
+\begin{equation}
+    \frac{\Delta R}{R_0} = \frac{R_B - R_0}{R_0}
+\end{equation}
+
+\subsection{磁电阻效应的分类}
+\begin{itemize}
+    \item \textbf{正常磁电阻效应（OMR）}
+    \item \textbf{各向异性磁电阻效应（AMR）}：坡莫合金 \(\Delta\rho/\rho_0 \sim 3\%\)
+    \item \hl{\textbf{巨磁电阻效应（GMR）}}：1988年发现，\(\Delta\rho/\rho_0 > 10\%\)，可达50\%以上
+    \item \textbf{庞磁电阻效应（CMR）}
+    \item \textbf{隧穿磁电阻效应（TMR）}
+\end{itemize}
+
+\subsection{巨磁电阻效应的发现}
+\qa{
+    GMR效应是由谁在什么时候发现的？这一发现带来了什么重要意义？
+}{
+    \textbf{发现者}：
+    \begin{itemize}
+        \item \textbf{彼得·格伦贝格尔}（Peter Grunberg，德国）：1986年制备了 Fe-Cr-Fe 三层单晶结构薄膜，发现反平行排列时电阻高于平行排列时约10\%。
+        \item \textbf{阿尔贝·费尔}（Albert Fert，法国）：1988年将 Fe、Cr 薄膜交替制成几十个周期的超晶格薄膜，发现磁电阻比率达 50\%。
+    \end{itemize}
+
+    \textbf{重要意义}：
+    \begin{itemize}
+        \item 两人共同获得 \textbf{2007 年诺贝尔物理学奖}。
+        \item GMR 效应的发现标志着\textbf{自旋电子学}（Spintronics）的诞生——电子输运不仅要考虑电荷，还要考虑自旋。
+        \item \hl{实际应用上的最大贡献}：使计算机硬盘的\textbf{读取磁头灵敏度大幅提高}，硬盘容量从几百 Mbit 提升到几百 Gbit 甚至上千 Gbit，直接推动了信息技术革命。
+        \item 此外还应用于磁传感器、生物检测、汽车电子等领域。
+    \end{itemize}
+}
+
+\subsection{二流体模型解释GMR}
+根据二流体模型，传导电子分成\textbf{自旋向上}和\textbf{自旋向下}两种。
+
+\begin{itemize}
+    \item \hl{无外加磁场时}：相邻铁磁层的磁矩方向相反（反平行排列）。两种电子都在穿过与其自旋方向相同的磁层后，在下一磁层受到强烈散射，处于\textbf{高电阻状态}。
+    \item \hl{外加饱和磁场时}：各磁层磁矩沿外磁场方向排列（平行排列）。一半电子可穿过许多磁层只受到很弱的散射，另一半在每一层都受到很强的散射，处于\textbf{低电阻状态}。
+\end{itemize}
+
+\qa{
+    用二流体模型详细解释巨磁电阻效应的物理机制。
+}{
+    二流体模型将传导电子分为\textbf{自旋向上（$\uparrow$）}和\textbf{自旋向下（$\downarrow$）}两类，它们在铁磁层中的散射几率取决于其自旋方向与磁层磁化方向的相对关系。
+
+    \noindent\textbf{基本假设}：
+    \begin{itemize}
+        \item 电子自旋方向与磁层磁化方向\textbf{平行}时，散射弱，平均自由程长。
+        \item 电子自旋方向与磁层磁化方向\textbf{反平行}时，散射强，平均自由程短。
+    \end{itemize}
+
+    \noindent\textbf{零磁场下（高阻态）}：
+    \begin{itemize}
+        \item 相邻铁磁层的磁矩反平行排列（如：层1 $\uparrow$，层2 $\downarrow$）。
+        \item $\uparrow$ 电子在层1散射弱、自由穿行，但进入层2时遇到反平行磁矩，受到强烈散射。
+        \item $\downarrow$ 电子在层1受强散射，在层2自由穿行。
+        \item 两种电子都无法连续穿过多个磁层，类似于\"一个大电阻和一个小电阻串联\"的不利情况，总电阻高。
+    \end{itemize}
+
+    \noindent\textbf{外加饱和磁场时（低阻态）}：
+    \begin{itemize}
+        \item 所有铁磁层的磁矩沿外磁场方向平行排列（如：层1 $\uparrow$，层2 $\uparrow$）。
+        \item $\uparrow$ 电子在所有磁层都遇到平行磁矩，散射都很弱，可以穿行整个多层膜（畅通无阻）。
+        \item $\downarrow$ 电子在所有磁层都遇到反平行磁矩，每一层都受到强散射（处处受阻）。
+        \item 这相当于\"一个大电阻和一个小电阻并联\"的有利情况，总电阻由低阻通道主导，宏观电阻显著降低。
+    \end{itemize}
+
+    \noindent\textbf{结论}：正是由于磁场改变了磁层间的相对磁化取向（反平行$\to$平行），导致电子散射几率发生巨大变化，从而产生巨磁电阻效应。$\dfrac{R_{\uparrow\downarrow} - R_{\uparrow\uparrow}}{R_{\uparrow\uparrow}}$ 可达 50\% 以上，远大于普通磁电阻效应。
+}
+
+\subsection{惠斯登电桥传感器结构}
+巨磁电阻传感器采用\textbf{惠斯登电桥}和\textbf{磁通屏蔽技术}：
+\begin{itemize}
+    \item \(R_1\)、\(R_3\)：在磁性材料上方，受外磁场作用时电阻减小。
+    \item \(R_2\)、\(R_4\)：在磁性材料下方，被屏蔽不受外磁场影响，电阻不变。
+\end{itemize}
+
+传感器输出：
+\begin{equation}
+    V_{\text{输出}} = V_{\text{out+}} - V_{\text{out-}} = V_+ \cdot \frac{R_0 - R_B}{R_0 + R_B}
+\end{equation}
+
+\qa{
+    惠斯登电桥在GMR传感器中起到什么作用？为什么采用这种结构？
+}{
+    \textbf{作用}：惠斯登电桥将磁电阻的变化转化为差分电压信号输出，提高了测量的灵敏度和抗干扰能力。
+
+    \textbf{具体原理}：
+    \begin{enumerate}
+        \item \textbf{差分输出}：四个电阻中 $R_1$、$R_3$ 随外磁场变化（$R_B$），$R_2$、$R_4$ 不变（$R_0$）。当有外磁场时，电桥失去平衡，$V_{\text{out+}}$ 和 $V_{\text{out-}}$ 之间产生电压差：
+        \[
+        V_{\text{输出}} = V_+ \cdot \frac{R_0 - R_B}{R_0 + R_B}
+        \]
+        \item \textbf{共模抑制}：温度变化、电源波动等共模干扰同时影响四个桥臂，差分输出时相互抵消，提高了测量的稳定性。
+        \item \textbf{磁通屏蔽}：$R_2$、$R_4$ 放置在磁性材料下方被屏蔽，不受外磁场影响，提供稳定的参考值。
+        \item \textbf{磁通集中}：基片上的镀层还可以作为磁通集中器，收集垂直于传感器管脚方向的磁通并聚集到GMR电桥上，灵敏度可提高 2--100 倍。
+    \end{enumerate}
+}
+
+\subsection{磁电阻测量原理}
+将电桥中处于对角位置的两只电阻短路，等效为一只电阻 \(R_{\text{总}} = R_B/2\)。与精密电阻 \(R_a\) 串联，施加恒压 \(V_+\)（5V）：
+
+\begin{align}
+    \frac{V_+ - V}{V} &= \frac{R_B/2}{R_a} \\
+    \Rightarrow\quad R_B &= \frac{2R_a (V_+ - V)}{V}
+\end{align}
+
+无磁场时（\(V = V_0\)）：
+\begin{equation}
+    R_0 = \frac{2R_a (V_+ - V_0)}{V_0}
+\end{equation}
+
+于是：
+\boxeq{\frac{R_B}{R_0} = \frac{V_0 (V_+ - V)}{V (V_+ - V_0)}}
+
+\boxeq{\frac{R_B - R_0}{R_0} = \frac{V_0 (V_+ - V)}{V (V_+ - V_0)} - 1}
+
+\qa{
+    什么是磁电阻相对变化率 $(R_B-R_0)/R_0$？它如何从实验数据中计算？
+}{
+    \textbf{物理意义}：$(R_B-R_0)/R_0$ 表示施加磁场后电阻相对于零场电阻的变化百分比。在 GMR 中这个值是负的（因为磁场使电阻降低），其绝对值衡量 GMR 效应的强弱。
+
+    \textbf{计算公式推导}：
+    \begin{enumerate}
+        \item 测量得到零场电压 $V_0$ 和各磁场下的电压 $V$（恒压 $V_+=5$V，$R_a=1.20$k$\Omega$）。
+        \item 计算 $R_B/R_0 = \dfrac{V_0(V_+ - V)}{V(V_+ - V_0)}$。
+        \item 计算 $(R_B-R_0)/R_0 = \dfrac{R_B}{R_0} - 1$。
+    \end{enumerate}
+
+    \textbf{本实验结果}：$\left|\dfrac{R_B-R_0}{R_0}\right|_{\max} = 0.1004 = 10.04\%$，远大于 AMR（$\sim 3\%$），体现了 GMR 的\"巨\"磁电阻特性。
+
+    \textbf{物理机制}：该相对变化来源于磁场使铁磁层磁矩从反平行（高阻）转变为平行排列（低阻）的过程中，电子散射几率的大幅变化。
+}
+
+\subsection{亥姆霍兹线圈磁场}
+亥姆霍兹线圈轴线中心位置的磁感应强度：
+\boxeq{B = \frac{8\mu_0 N I}{5^{3/2} R}}
+其中 \(N=200\) 匝，\(R=10\) cm。
+
+\section{实验仪器}
+\begin{itemize}
+    \item 多层膜巨磁电阻传感器（GMR传感器）
+    \item 自旋阀巨磁电阻传感器
+    \item 各向异性磁电阻传感器
+    \item 亥姆霍兹线圈（\(N=200\)，\(R=10\) cm）
+    \item 恒流源（线圈电源0-1.2A，测量电源0-5A）
+    \item 数字电压表
+\end{itemize}
+
+\section{实验内容与数据处理}
+
+\subsection{实验一：测量巨磁电阻与磁场的关系}
+从 \(I=0\) 开始逐渐升高线圈电流，每隔0.05A记录电压表输出值 \(V\)，记录到最大电流1.200A。
+
+计算 \(R_B/R_0\) 和 \((R_B-R_0)/R_0\)，绘制 \(R_B/R_0\)-\(B\) 关系图。
+
+\hl{实验结果}：\(\left|\dfrac{R_B-R_0}{R_0}\right|_{\max} = 0.1004 = 10.04\%\)
+
+\subsection{实验二：巨磁电阻传感器定标}
+测量传感器输出电压 \(V_{\text{输出}}\) 与磁场 \(B\) 的关系，计算传感器灵敏度 \(K\)。
+
+线性拟合结果（部分数据）：
+\begin{equation}
+    V_{\text{输出}} = 133.76\,B - 0.0077
+\end{equation}
+灵敏度：\(K = 133.76\ \text{V/T}\)
+
+\begin{equation}
+    \frac{K}{V_+} = \frac{133.76\ \text{V/T}}{5\ \text{V}} = 26.75\ \text{T}^{-1}
+\end{equation}
+
+\subsection{实验三：测量通电导线的电流}
+测量不同电流下传感器的输出电压，绘制 \(V_{\text{输出}}\)-\(I\) 关系图。
+
+注意：当电流较大时，温度升高导致读数不稳定，非线性区域的拟合效果较差。
+
+线性拟合（非线性区域）：
+\begin{equation}
+    V_{\text{输出}} = 0.0022\,I - 0.0014
+\end{equation}
+
+\qa{
+    从实验数据来看，影响GMR传感器测量精度的主要因素有哪些？
+}{
+    \textbf{主要影响因素}：
+    \begin{enumerate}
+        \item \textbf{温度效应}：当被测电流较大时（实验三中 $I>3$A），导线发热导致温度升高，传感器输出不稳定。实验中观察到\"电压和电流都不稳\"的情况，这是因为\"电流巨大，温度迅速升高，导致读数异常困难\"。
+        \item \textbf{非线性区}：传感器在低磁场的线性区和高磁场的饱和区表现不同，超出线性范围后拟合误差增大。实验三的 $V_{\text{输出}}$-I 拟合 $R^2=0.9573$，远不如实验二的 $R^2=0.9982$，说明非线性区域的数据质量差。
+        \item \textbf{地磁场影响}：地磁场作为背景磁场会影响零点，需要在校准时加以考虑。
+        \item \textbf{传感器方向}：传感器灵敏度与磁场方向和传感器敏感轴之间的夹角满足 $\cos\theta$ 关系，方向不准会引入误差。
+        \item \textbf{铁磁材料干扰}：附近的铁质材料会扰动局域磁场，影响测量结果，实验中应尽量避免。
+    \end{enumerate}
+}
+
+\subsection{思考题}
+\paragraph{思考题1：如何利用传感器测量未知导线电流？}
+首先确定线性电流区域，绘制 \(V_{\text{输出}}\)-\(I\) 关系图，然后比对输出电压测定未知导线电流。对于非线性区域，误差较大，不推荐使用。
+
+\paragraph{思考题2：求通电导线与传感器的距离。}
+根据导线磁场公式 \(B = \dfrac{\mu_0 I}{2\pi r}\)，结合 \(V_{\text{输出}} = 133.76\,B - 0.0077\) 和 \(V_{\text{输出}} = 0.0022\,I - 0.0014\)，可得距离 \(d \approx 12.15\) mm。
+
+更精确的方法：利用测量数据逐点计算，取合理区域的平均值，约7 mm。
+
+\section{自旋阀巨磁电阻效应（从第一性原理理解）}
+
+\subsection{为什么要发明自旋阀？——多层膜GMR的局限}
+多层膜GMR（Fe/Cr交替超晶格）虽然磁电阻比率大，但有严重缺陷：
+\begin{enumerate}
+    \item \textbf{需要大磁场}：要使所有铁磁层的磁矩从反平行翻转到平行，需要施加相当大的磁场（$\sim$1.5 T），无法探测微弱磁场。
+    \item \textbf{无法区分磁场极性}：多层膜GMR的电阻只依赖于层间磁矩是平行还是反平行，但对磁场的方向不敏感（对称响应），不能判断磁场是正是负。
+    \item \textbf{响应非线性}：磁矩翻转过程是集体行为，$R$-$H$ 曲线没有干净的线性区。
+\end{enumerate}
+\textbf{自旋阀的核心理念}：如果我们能\textbf{只让一层铁磁层的磁矩自由转动，而把另一层牢牢固定住}，那么：
+\begin{itemize}
+    \item 只需要很小的磁场就能改变自由层的方向 ($\Rightarrow$ 高灵敏度)。
+    \item 电阻取决于自由层与被钉扎层的相对取向 (平行/反平行)。
+    \item 自由层的翻转方向随外磁场方向改变 ($\Rightarrow$ 可判断磁场极性)。
+\end{itemize}
+
+\subsection{自旋阀的四层结构}
+自旋阀（Spin Valve）是 1991 年 IBM 公司 Dieny 等提出的四层结构：
+
+\begin{equation}
+    \boxed{\text{铁磁层1（自由层）}\,/\,\text{非磁性中间层}\,/\,\text{铁磁层2（被钉扎层）}\,/\,\text{反铁磁层（钉扎层）}}
+\end{equation}
+
+\textbf{各层的作用}：
+
+{\footnotesize
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{层} & \textbf{材料（典型）} & \textbf{厚度} & \textbf{作用} \\
+    \hline
+    铁磁层1（自由层） & Co, Fe, NiFe & 2--10 nm & 磁矩可自由旋转，对微弱外磁场敏感 \\
+    \hline
+    非磁性中间层 & Cu, Ag & 2--4 nm & 隔离两层铁磁层，使它们无直接交换耦合；同时传导自旋极化电流 \\
+    \hline
+    铁磁层2（被钉扎层） & Co, Fe & 2--10 nm & 磁矩通过交换偏置被固定（钉扎）在特定方向 \\
+    \hline
+    反铁磁层（钉扎层） & FeMn, IrMn, PtMn & 5--15 nm & 提供交换偏置，单向钉扎被钉扎层的磁矩 \\
+    \hline
+\end{tabular}}
+
+\subsection{交换偏置——如何"钉扎"磁矩？}
+
+\subsubsection{什么是反铁磁体？}
+\begin{itemize}
+    \item 反铁磁体（AFM）内部的原子磁矩在奈尔温度 $T_N$ 以下有序排列，但\textbf{相邻磁矩反平行}，净磁矩为零。
+    \item 反铁磁体的磁各向异性非常大——其磁矩方向一旦在制备时固定，在外加磁场变化时几乎不会转动。
+    \item 常见反铁磁材料：FeMn、IrMn、PtMn 等。
+\end{itemize}
+
+\subsubsection{交换偏置的形成（如何钉扎？）}
+\begin{enumerate}
+    \item 在制备自旋阀时，施加一个强诱导磁场，使铁磁层2（被钉扎层）的磁矩沿某个方向排列。
+    \item 同时，反铁磁层（紧邻铁磁层2）在降温经过 $T_N$ 时，其界面处的磁矩在铁磁层2的磁场作用下取向一致（即界面处反铁磁层的磁矩被\"极化\"）。
+    \item 反铁磁层内部各向异性极大，界面处的磁矩方向一旦确定，就被牢牢锁死。
+    \item 反铁磁层界面的固定磁矩对铁磁层2的磁矩产生一个\textbf{单向的交换耦合作用}——铁磁层2的磁矩如果要偏离这个方向，会受到额外的钉扎能阻碍。
+    \item 宏观表现：铁磁层2的磁滞回线\textbf{整体偏移}（不再是中心对称的），偏移量称为\textbf{交换偏置场} $H_{EB}$。
+\end{enumerate}
+
+\begin{equation}
+    \boxed{\text{交换偏置（Exchange Bias）}= \text{铁磁/反铁磁界面处的单向钉扎效应}}
+\end{equation}
+
+\textbf{关键}：交换偏置与普通铁磁体自身磁滞的\textbf{本质区别}：
+\begin{itemize}
+    \item \textbf{普通磁滞}（如自由层）：正向和反向矫顽力大小相等，回线关于 $H=0$ 对称。原因是磁矩翻转在正反方向遇到的阻碍相同。
+    \item \textbf{交换偏置}（如被钉扎层）：磁滞回线整体偏移——正向翻转容易，反向翻转困难（需要额外克服界面钉扎能），回线不再对称。
+\end{itemize}
+
+\subsection{自旋阀的完整工作原理（从 $R$-$H$ 曲线看）}
+
+设自由层的磁化方向在零场时沿 $+x$ 方向（制备诱导），被钉扎层的磁矩通过交换偏置被固定在 $+x$ 方向。那我们来看外磁场 $H$ 从正到负再回到正的完整过程中电阻如何变化：
+
+\begin{center}
+    \fbox{\parbox{0.9\textwidth}{
+        \textbf{符号约定}：$\uparrow$ = 磁矩向右 ($+x$)；$\downarrow$ = 磁矩向左 ($-x$) \\
+        自由层磁化方向记为 $M_{\text{free}}$，被钉扎层磁化方向记为 $M_{\text{pinned}}$ \\
+        平行 $\to$ 低阻 $\quad$ 反平行 $\to$ 高阻
+    }}
+\end{center}
+
+\begin{enumerate}
+    \item \textbf{大正向磁场}（$H \gg H_{EB}$）：
+    \begin{itemize}
+        \item 自由层：$\uparrow$（朝 $+x$），被钉扎层：$\uparrow$（朝 $+x$）
+        \item $M_{\text{free}} \parallel M_{\text{pinned}}$ \quad $\Rightarrow$ \textbf{低阻态}
+    \end{itemize}
+
+    \item \textbf{减小至零磁场}（$H=0$）：
+    \begin{itemize}
+        \item 自由层：$\uparrow$（仍朝 $+x$），被钉扎层：$\uparrow$（朝 $+x$）
+        \item \textbf{仍为低阻态}。注意：这与多层膜GMR不同——多层膜GMR在 $H=0$ 时相邻层反平行，是\textbf{高阻态}；而自旋阀制备时已诱导平行，$H=0$ 时\textbf{为低阻态}。
+    \end{itemize}
+
+    \item \textbf{施加反向小磁场}（$H_{\text{c,free}} < H < 0$）：
+    \begin{itemize}
+        \item 自由层只在一薄层材料中，各向异性小，\textbf{很小的反向磁场就能使其翻转}$\to \downarrow$。
+        \item 被钉扎层被交换偏置牢牢锁定：$\uparrow$（不动）。
+        \item $M_{\text{free}} \uparrow\downarrow M_{\text{pinned}}$ \quad $\Rightarrow$ \textbf{高阻态}（电阻跳变！）
+    \end{itemize}
+
+    \item \textbf{继续增大反向磁场至交换偏置场以上}（$H < -H_{EB}$）：
+    \begin{itemize}
+        \item 自由层：$\downarrow$（已翻转）。
+        \item 被钉扎层：终于在巨大反向磁场下克服了交换偏置钉扎，也翻转 $\to \downarrow$。
+        \item $M_{\text{free}} \parallel M_{\text{pinned}}$ \quad $\Rightarrow$ \textbf{再次回到低阻态}。
+    \end{itemize}
+
+    \item \textbf{从反向大磁场回到零磁场再正向扫描}：
+    \begin{itemize}
+        \item 被钉扎层在 $H=0$ 附近仍保持 $\downarrow$（交换偏置使其无法自发翻转回 $\uparrow$）。
+        \item 自由层在小正向磁场下翻转回 $\uparrow$ \quad $\Rightarrow$ 再次反平行 \quad $\Rightarrow$ \textbf{高阻态}。
+        \item 大正向磁场下被钉扎层翻转回 $\uparrow$ \quad $\Rightarrow$ 平行 \quad $\Rightarrow$ \textbf{低阻态}。
+    \end{itemize}
+\end{enumerate}
+
+\subsection{自旋阀的 $R$-$H$ 曲线特征}
+
+与多层膜GMR的对称 $R$-$H$ 曲线不同，自旋阀的 $R$-$H$ 曲线具有\textbf{明显的非对称性}：
+
+\begin{itemize}
+    \item \textbf{两个不同的翻转场}：
+    \begin{itemize}
+        \item $H_{\text{c,free}}$（自由层矫顽场）：很小，$\sim$1--10 Oe，对应电阻从低到高的跳变。
+        \item $H_{EB}$（交换偏置场）：较大，$\sim$100--500 Oe，对应被钉扎层的翻转，电阻回到低值。
+    \end{itemize}
+    \item \textbf{电阻变化范围宽}：从 $H_{\text{c,free}}$ 到 $H_{EB}$ 之间保持高阻态，形成一个电阻\"平台\"。
+    \item \textbf{非对称性}：正磁场和负磁场下的电阻曲线不对称——这正是判断磁场方向的依据。
+    \item \textbf{线性响应}：自由层的翻转过程是渐进式的（磁畴旋转而非突然翻转），在 $H_{\text{c,free}}$ 附近的 $R$-$H$ 曲线有较好的线性区，适合做模拟传感器。
+\end{itemize}
+
+\subsection{自旋阀 vs 多层膜GMR：一图对比}
+
+\begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{对比维度} & \textbf{多层膜GMR} & \textbf{自旋阀} \\
+    \hline
+    \textbf{结构} & 铁磁层/非磁层交替多层（10--50层） & 四层简化结构 \\
+    \hline
+    \textbf{零场电阻态} & \hl{高阻态}（相邻层反平行，$\uparrow\downarrow\uparrow\downarrow$） & \hl{低阻态}（平行排列，$\uparrow\uparrow$） \\
+    \hline
+    \textbf{所需磁场大小} & 需要大磁场使所有层翻转（饱和场 $\sim$1.5 T） & 自由层在很小磁场下翻转（$\sim$mT量级） \\
+    \hline
+    \textbf{磁场极性判断} & 不能（$R$-$H$ 对称） & 能（$R$-$H$ 不对称） \\
+    \hline
+    \textbf{线性响应} & 差（集体翻转，非线性） & \hl{好}（自由层独立翻转，可设计线性区） \\
+    \hline
+    \textbf{电阻变化率} & 大（可达50\%以上） & 中等（$\sim$10--20\%） \\
+    \hline
+    \textbf{主要应用} & 磁传感器（不区分极性） & \hl{硬盘读取磁头}（需要区分正负磁畴信号） \\
+    \hline
+\end{tabular}
+
+\subsection{为什么自旋阀是硬盘读取磁头的理想选择？}
+硬盘中的磁记录位是用磁化方向（$\uparrow$ 或 $\downarrow$）来存储二进制信息（0 和 1）的。读取磁头需要在高速旋转的盘面上方掠过，检测每个磁畴的磁场方向：
+
+\begin{itemize}
+    \item 磁畴产生的磁场很小（需要\textbf{高灵敏度}）$\to$ 自旋阀的自由层在微弱磁场下就能翻转。
+    \item 需要\textbf{判断磁场方向}（正磁畴 $\uparrow$ 还是负磁畴 $\downarrow$）$\to$ 自旋阀的 $R$-$H$ 曲线不对称，正反向磁场产生不同的电阻变化。
+    \item 需要\textbf{快速响应}（硬盘转速 7200 转/分钟）$\to$ 自旋阀结构简单，频率特性好。
+\end{itemize}
+
+自旋阀的应用使硬盘容量从 1990 年代的几百 MB 飙升到现在的数 TB，是现代信息存储技术的基石之一。
+
+\qa{
+    自旋阀的结构和工作原理是什么？与多层膜GMR有何区别？
+}{
+    \textbf{结构}：铁磁层1（自由层）/ 非磁性中间层 / 铁磁层2（被钉扎层）/ 反铁磁层（钉扎层）。
+
+    \textbf{核心原理}：反铁磁层通过交换偏置将被钉扎层的磁矩固定在一个方向；自由层的磁矩在微弱外磁场下即可自由翻转。两层磁矩的相对取向（平行 $\to$ 低阻，反平行 $\to$ 高阻）决定电阻值。$\;$由于制备时诱导平行排列，零场下为低阻态。
+
+    \textbf{多层膜GMR与自旋阀的根本区别}：（1）零场下多层膜为高阻态，自旋阀为低阻态；（2）自旋阀只需很小的磁场就能使自由层翻转，灵敏度远高于多层膜；（3）自旋阀的 $R$-$H$ 曲线不对称，可以判断磁场极性；（4）自旋阀线性响应好，适合做硬盘读取磁头。
+}
+
+\section{关键公式总结}
+\begin{itemize}
+    \item 磁电阻相对变化率：\((R_B - R_0)/R_0\)
+    \item 电阻比：\(R_B/R_0 = V_0(V_+ - V) / [V(V_+ - V_0)]\)
+    \item 亥姆霍兹线圈磁场：\(B = 8\mu_0 NI / (5^{3/2}R)\)
+    \item 传感器输出：\(V_{\text{输出}} = V_+ \cdot (R_0 - R_B)/(R_0 + R_B)\)
+    \item 导线磁场：\(B = \mu_0 I / (2\pi r)\)
+\end{itemize}
+
+\newpage
+
+% ===================================================================
+% GMR 预习自测题（含答案）
+% ===================================================================
+\section{\large 预习自测题（含答案）}
+
+\noindent\fbox{\parbox{\textwidth}{\centering \textbf{说明：}以下为巨磁电阻实验的预习自测题，每题附有答案和解析。多选题标注了所有正确选项，单选题仅一个正确选项。}}
+
+\bigskip
+
+\begin{enumerate}[label=\arabic*.]
+    % ---- 原多选题 1~11 ----
+    \item \textbf{磁电阻效应包含下述哪些效应？【多选题】}
+    \begin{itemize}
+        \item[\checkmark] 正常磁电阻（OMR）
+        \item[\checkmark] 各向异性磁电阻（AMR）
+        \item[\checkmark] 巨磁电阻（GMR）
+        \item[\checkmark] 庞磁电阻（CMR）
+    \end{itemize}
+    \answer{四项全选。磁电阻效应是一个大家族，按磁电阻值和产生机理的不同可分为：正常磁电阻效应（OMR）、各向异性磁电阻效应（AMR，$\sim$3\%）、巨磁电阻效应（GMR，$>$10\%）、庞磁电阻效应（CMR）及隧穿磁电阻效应（TMR）等。}
+
+    \item \textbf{巨磁电阻的量级一般是多少？【多选题】}
+    \begin{itemize}
+        \item 0.1\%--1\%
+        \item[\checkmark] 10\%--100\%
+        \item 100\%--1000\%
+        \item 以上都不对
+    \end{itemize}
+    \answer{GMR 的 $\Delta\rho/\rho_0$ 通常都在 10\% 以上（比 AMR 的 $\sim$3\% 高一到两个数量级），有些可达 100\% 以上（如 Fert 小组 1988 年发现 Fe/Cr 超晶格薄膜的磁电阻比率达到 50\%）。因此正确答案为 10\%--100\%。}
+
+    \item \textbf{多层膜巨磁电阻在未加磁场时磁矩的分布情况？【多选题】}
+    \begin{itemize}
+        \item 相邻磁性层磁矩平行
+        \item[\checkmark] 相邻磁性层磁矩反平行
+        \item 磁矩随机分布
+        \item 磁性层磁矩与非磁性磁矩层平行
+    \end{itemize}
+    \answer{零磁场时，相邻铁磁金属层的磁矩方向相反（反平行排列），两种自旋电子都在穿过与其自旋方向相同的磁层后，在下一磁层受到强烈散射，宏观上处于高电阻状态。}
+
+    \item \textbf{多层膜巨磁电阻在施加饱和磁场时磁矩的分布情况？【多选题】}
+    \begin{itemize}
+        \item[\checkmark] 相邻磁性层磁矩平行
+        \item 相邻磁性层磁矩反平行
+        \item 磁矩随机分布
+        \item 磁性层磁矩与非磁性磁矩层平行
+    \end{itemize}
+    \answer{当外加磁场足够大时，原本反平行排列的各磁层磁矩都沿外磁场方向排列（平行排列）。一半电子可以穿过许多磁层只受到很弱的散射，另一半在每一层都受到很强的散射，宏观上处于低电阻状态。}
+
+    \item \textbf{关于本实验中惠斯通电桥描述正确的是？【多选题】}
+    \begin{itemize}
+        \item[\checkmark] 惠斯通电桥中的四个巨磁电阻是相同的
+        \item 惠斯通电桥中的四个巨磁电阻是不同的
+        \item 惠斯通电桥中的四个巨磁电阻在施加外磁场时电阻是相同的
+        \item[\checkmark] 惠斯通电桥中的四个巨磁电阻在施加外磁场时电阻是不同的
+    \end{itemize}
+    \answer{电桥由四只相同的巨磁电阻组成（$R_1=R_2=R_3=R_4=R_0$）。但由于磁通屏蔽技术，$R_1$ 和 $R_3$ 在磁性材料上方，受外磁场作用时电阻减小（变为 $R_B$）；$R_2$ 和 $R_4$ 在磁性材料下方被屏蔽，电阻不变（仍为 $R_0$）。所以四只电阻在外磁场下阻值不同。}
+
+    \item \textbf{关于本实验中所用传感器描述正确的是？【多选题】}
+    \begin{itemize}
+        \item 多层膜传感器是各向同性的
+        \item[\checkmark] 多层膜传感器是各向异性的
+        \item 自旋阀传感器是各向同性的
+        \item[\checkmark] 自旋阀传感器是各向异性的
+    \end{itemize}
+    \answer{两种传感器都有\textbf{敏感轴}方向（垂直于传感器管脚的方向），当外磁场方向平行于敏感轴时传感器输出最大，偏离时输出与 $\cos\theta$ 成正比。因此两种传感器都是各向异性的。}
+
+    \item \textbf{实验中的第一个实验的目的是？【多选题】}
+    \begin{itemize}
+        \item[\checkmark] 测量传感器中巨磁电阻的磁电阻行为
+        \item 对传感器进行标定
+        \item 利用传感器进行实际测量
+        \item 以上都不对
+    \end{itemize}
+    \answer{实验一的内容是通过亥姆霍兹线圈产生磁场，测量不同磁场下巨磁电阻阻值 $R_B$，作 $R_B/R_0$-$B$ 关系图，求 $(R_B-R_0)/R_0$ 的最大值。这是了解多层膜巨磁电阻效应原理的基础实验。}
+
+    \item \textbf{实验中的第二个实验的目的是？【多选题】}
+    \begin{itemize}
+        \item 测量传感器中巨磁电阻的磁电阻行为
+        \item[\checkmark] 对传感器进行标定
+        \item 利用传感器进行实际测量
+        \item 以上都不对
+    \end{itemize}
+    \answer{实验二是测量传感器输出电压 $V_{\text{输出}}$ 与磁场 $B$ 的关系，计算传感器的灵敏度 $K = \Delta V_{\text{输出}} / \Delta B$，属于传感器标定实验。}
+
+    \item \textbf{实验中的第三个实验的目的是？【多选题】}
+    \begin{itemize}
+        \item 测量传感器中巨磁电阻的磁电阻行为
+        \item 对传感器进行标定
+        \item[\checkmark] 利用传感器进行实际测量
+        \item 以上都不对
+    \end{itemize}
+    \answer{实验三是利用已标定的传感器测量通电导线电流 $I$ 产生的磁场，并探讨距离测量等实际应用，属于将传感器用于实际测量的环节。}
+
+    \item \textbf{本实验中用到的亥姆霍兹线圈中两个线圈产生的磁场关系正确的是？【多选题】}
+    \begin{itemize}
+        \item[\checkmark] 磁场平行
+        \item 磁场反平行
+        \item 磁场方向无关
+        \item 以上都对
+    \end{itemize}
+    \answer{亥姆霍兹线圈由两个相同的线圈平行放置，间距等于线圈半径。两个线圈通以同向电流时，产生的磁场在轴线方向上是同向（平行）的，在中心区域叠加形成均匀磁场。}
+
+    \item \textbf{第三个实验要测量通电导线周围的磁场，其中本实验设备上通电导线的位置是？【多选题】}
+    \begin{itemize}
+        \item[\checkmark] 在传感器下面
+        \item[\checkmark] 在传感器上面
+        \item[\checkmark] 在传感器侧面
+        \item 以上都不对
+    \end{itemize}
+    \answer{讲义原文说\"导线可放在芯片的\textbf{上方或下方}，但必须垂直于敏感轴\"。从物理原理上，通电直导线的磁场呈同心圆分布，只要导线垂直于敏感轴，无论在上方、下方还是侧面，传感器位置处的磁场都存在沿敏感轴方向的分量，均可产生可测信号。因此三个位置均正确。}
+
+    % ---- 新单选题 12~26 ----
+    \item \textbf{二流体模型如何解释巨磁电阻效应？【单选题】}
+    \begin{itemize}
+        \item 传导电子在磁场中运动时，动能会转化为热能，导致电阻增加。
+        \item 传导电子在导体中沿直线运动，不受磁场影响。
+        \item 传导电子根据其电荷属性分为两组，分别对磁场产生不同响应。
+        \item[\checkmark] 传导电子分成自旋向上和自旋向下两组，在外加磁场作用下，散射几率发生变化。
+    \end{itemize}
+    \answer{二流体模型将传导电子分为自旋向上和自旋向下两组。电子在铁磁层中的散射几率取决于其自旋方向与磁层磁化方向的相对关系：平行时散射弱，反平行时散射强。磁场改变磁层间的磁矩相对取向（反平行$\to$平行），从而改变散射几率，产生巨磁电阻效应。}
+
+    \item \textbf{自旋阀的结构通常包括哪几层？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] 磁性层/非磁性中间层/磁性层/反铁磁性层
+        \item 铁磁层/非磁性层/铁磁层
+        \item 磁性层/反铁磁性层/磁性层
+        \item 非磁性层/铁磁层/非磁性层
+    \end{itemize}
+    \answer{自旋阀是 1991 年 IBM 公司 Dieny 等提出的四层简化结构：磁性层1（自由层）/非磁性中间层/磁性层2（被钉扎层）/反铁磁性层（钉扎层）。反铁磁层通过交换耦合将磁性层2的磁矩钉扎在易磁化方向。}
+
+    \item \textbf{根据讲义中的\"二流体模型\"，当外加磁场为零时，多层膜巨磁电阻材料处于何种状态？【单选题】}
+    \begin{itemize}
+        \item 低电阻态，因为相邻铁磁层磁矩反平行排列
+        \item[\checkmark] 高电阻态，因为相邻铁磁层磁矩反平行排列
+        \item 高电阻态，因为相邻铁磁层磁矩平行排列
+        \item 低电阻态，因为相邻铁磁层磁矩平行排列
+    \end{itemize}
+    \answer{零磁场时相邻铁磁层磁矩反平行，两种电子都在穿过与其自旋方向相同的磁层后遇到反平行的下一磁层，受到强烈散射，相当于\"大电阻与小电阻串联\"，总电阻高。}
+
+    \item \textbf{根据实验原理，测量巨磁电阻阻值 \(R_B\) 的表达式是？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] \(\displaystyle R_B = \frac{2R_a(V_+ - V)}{V}\)
+        \item \(\displaystyle R_B = \frac{2R_a V}{V_+ - V}\)
+        \item \(\displaystyle R_B = \frac{V_0(V_+ - V)}{V(V_+ - V_0)}\)
+        \item \(\displaystyle R_B = \frac{R_a(V_+ - V)}{V}\)
+    \end{itemize}
+    \answer{由 $\dfrac{V_+ - V}{V} = \dfrac{R_B/2}{R_a}$ 推导得到 $R_B = \dfrac{2R_a(V_+ - V)}{V}$。选项 C 是 $R_B/R_0$ 的表达式，不是 $R_B$ 的直接表达式。}
+
+    \item \textbf{巨磁电阻效应（GMR）的发现，为哪一前沿物理学分支的创立奠定了基础？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] 自旋电子学
+        \item 等离子体物理学
+        \item 凝聚态物理学
+        \item 高能物理学
+    \end{itemize}
+    \answer{GMR 效应的发现表明在电子输运过程中必须考虑与自旋相关的散射效应，从而将传统独立的电学与磁学统一，标志着\textbf{自旋电子学（Spintronics）}的诞生。}
+
+    \item \textbf{在测量通电导线电流时，为了使传感器输出信号最大，导线应如何放置？【单选题】}
+    \begin{itemize}
+        \item 任意放置，无影响
+        \item 放置在传感器管脚的上方
+        \item[\checkmark] 与传感器敏感轴方向垂直
+        \item 与传感器敏感轴方向平行
+    \end{itemize}
+    \answer{讲义原文：\"导线可放在芯片的上方或下方，但必须垂直于敏感轴。\"关键在于导线必须垂直于敏感轴方向（而非平行于敏感轴），这样通电导线产生的辐射状磁场在传感器位置处才会存在沿敏感轴方向的分量，传感器输出信号最大。}
+
+    \item \textbf{实验中所用的多层膜巨磁电阻传感器采用了哪种电路结构？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] 惠斯登电桥
+        \item 放大电路
+        \item 桥式整流电路
+        \item 分压电路
+    \end{itemize}
+    \answer{GMR 传感器采用惠斯登电桥结构（由四只相同的巨磁电阻组成），将磁电阻的变化转化为差分电压信号输出，提高灵敏度和抗干扰能力。}
+
+    \item \textbf{在实验中，用于产生和测量磁场大小的设备是？【单选题】}
+    \begin{itemize}
+        \item 传感器
+        \item 直流电源
+        \item 霍尔元件
+        \item[\checkmark] 亥姆霍兹线圈
+    \end{itemize}
+    \answer{实验中使用亥姆霍兹线圈（$N=200$ 匝，$R=10$ cm）通以可调电流来产生均匀磁场，磁场大小通过公式 $B = 8\mu_0 NI / (5^{3/2}R)$ 计算得到。}
+
+    \item \textbf{在磁电阻 \(\Delta R / R_0\) 测量原理中，将惠斯登电桥中的两只电阻短路后，其等效电阻 \(R_{eq}\) 与单元电阻 \(R_B\) 的关系是？【单选题】}
+    \begin{itemize}
+        \item \(R_{eq} = 2R_B\)
+        \item[\checkmark] \(R_{eq} = R_B / 2\)
+        \item \(R_{eq} = R_B\)
+        \item \(R_{eq} = R_B / 4\)
+    \end{itemize}
+    \answer{将惠斯登电桥中处于对角位置的两只电阻短路后，电桥等效为两只单元电阻 $R_B$ 的并联，因此 $R_{\text{总}} = R_B/2$。}
+
+    \item \textbf{根据讲义内容，巨磁电阻效应（GMR）与正常磁电阻效应（OMR）和各向异性磁电阻效应（AMR）相比，其电阻相对变化率 \(\Delta \rho / \rho_0\) 有什么显著特点？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] 比OMR和AMR都大
+        \item 比OMR和AMR都小
+        \item 与OMR和AMR的变化率在同一数量级
+        \item 比OMR小，但比AMR大
+    \end{itemize}
+    \answer{一般材料的 $\Delta\rho/\rho_0$ 都小于 1\%，AMR 可达 3\%，而 GMR 通常在 10\% 以上（有时可达 100\% 以上），比 OMR 和 AMR 都大一到两个数量级，因此称为\"巨\"磁电阻。}
+
+    \item \textbf{巨磁电阻材料的电阻率在有外磁场作用时会如何变化？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] 显著减小
+        \item 保持不变
+        \item 变化量很小
+        \item 显著增大
+    \end{itemize}
+    \answer{GMR 材料的电阻率在外磁场作用下\textbf{大幅度减小}。这是因为磁场使铁磁层磁矩从反平行排列变为平行排列，电子散射几率下降，电阻降低。实验测得 $\left|\dfrac{R_B-R_0}{R_0}\right|_{\max} = 10.04\%$。}
+
+    \item \textbf{实验中，用于测量的恒流源在不用时，正确的操作是？【单选题】}
+    \begin{itemize}
+        \item 保持其输出为最大值，以备急用
+        \item[\checkmark] 归零，以提高使用寿命
+        \item 保持其输出为非零值，以便下次使用
+        \item 直接关闭主机电源即可
+    \end{itemize}
+    \answer{根据实验注意事项：\"仪器上的恒流源不用时应归零，以提高使用寿命。\"这是为了保护恒流源电路，避免长时间负载或下次开机时产生冲击。}
+
+    \item \textbf{自旋阀与多层膜巨磁电阻的主要区别在于？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] 自旋阀的磁电阻率对外磁场的响应呈线性关系
+        \item 自旋阀在无外磁场时处于高电阻态
+        \item 自旋阀不具有巨磁电阻效应
+        \item 自旋阀不包含反铁磁层
+    \end{itemize}
+    \answer{自旋阀具有更好的线性响应特性。此外，多层膜GMR零场时为高阻态（反平行），而自旋阀由于制备时诱导平行排列，零场时为低阻态。自旋阀包含反铁磁层（钉扎层），同样具有GMR效应。}
+
+    \item \textbf{在惠斯登电桥结构中，当无外加磁场时，传感器的输出电压 \(V_{out}\) 理论上应为多少？【单选题】}
+    \begin{itemize}
+        \item \(V_+\) 的一半
+        \item 5V
+        \item[\checkmark] 0V
+        \item \(V_+\)
+    \end{itemize}
+    \answer{无外加磁场时，四个巨磁电阻相等（$R_1=R_2=R_3=R_4=R_0$），电桥处于平衡状态，差分输出 $V_{\text{输出}} = V_{\text{out+}} - V_{\text{out-}} = 0$。}
+
+    \item \textbf{在进行实验操作时，如果需要调换传感器，正确的操作步骤是？【单选题】}
+    \begin{itemize}
+        \item[\checkmark] 调换传感器前，需先关掉主机电源
+        \item 在主机开机状态下，将传感器插针位置对准后直接插入
+        \item 无需关机，直接拔下传感器
+        \item 调换传感器前，将线圈电流调到最大
+    \end{itemize}
+    \answer{根据实验注意事项：\"需先关掉主机电源，再调换传感器，注意传感器插针位置，不要损坏传感器接插件。\"这是为了防止带电插拔损坏传感器或主机电路。}
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 总附录：综合对比与记忆要点
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{综合对比与记忆要点}
+
+\section{四个实验的核心物理效应}
+
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{实验} & \textbf{核心效应} & \textbf{关键参数} & \textbf{应用} \\
+    \hline
+    电光效应 & 泡克尔斯效应 & 半波电压 \(V_\pi\)、消光比 \(M\)、电光系数 \(r_{22}\) & 光调制器、Q开关 \\
+    \hline
+    光纤光栅 & 布拉格反射 & 温度灵敏度 \(\alpha\)、应变灵敏度 \((1-P_e)\) & 温度/应力传感器 \\
+    \hline
+    磁共振成像 & 核磁共振 & 拉莫尔频率 \(\omega_0\)、弛豫时间 \(T_1/T_2\) & 医学影像 \\
+    \hline
+    巨磁电阻 & GMR效应 & 磁电阻比 \((R_B-R_0)/R_0\)、灵敏度 \(K\) & 磁场/电流传感器、硬盘 \\
+    \hline
+\end{tabular}
+
+\section{诺贝尔奖相关的实验}
+
+\subsection*{巨磁电阻效应——2007年诺贝尔物理学奖}
+\begin{itemize}
+    \item \textbf{彼得·格伦贝格尔}（德国）：Fe-Cr-Fe三层薄膜
+    \item \textbf{阿尔贝·费尔}（法国）：Fe-Cr超晶格薄膜，磁电阻率达50\%
+    \item 贡献：使计算机硬盘容量从几百Mbit提升到几百Gbit以上
+\end{itemize}
+
+\subsection*{磁共振成像——历年诺贝尔奖}
+\begin{itemize}
+    \item 1943年：斯特恩——测量质子磁矩
+    \item 1944年：拉比——气态原子核磁共振方法
+    \item 1952年：布洛赫、珀塞尔——宏观核磁共振现象
+    \item 1991年：恩斯特——NMR傅里叶变换、二维谱
+    \item 2003年：劳特伯尔、曼斯菲尔德——磁共振成像
+\end{itemize}
+
+\section{实验数据处理方法对比}
+
+\begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{实验} & \textbf{数据处理方法} & \textbf{注意事项} \\
+    \hline
+    电光效应 & 拟合法（Adam优化器）、极值法 & 区分正负电压，注意倍频条件 \\
+    \hline
+    光纤光栅 & 线性拟合法（最小二乘） & 区分加载/卸载，注意回滞 \\
+    \hline
+    磁共振成像 & FFT重建、指数拟合（弛豫） & 选层梯度与激发脉冲同时施加 \\
+    \hline
+    巨磁电阻 & 线性拟合法、灵敏度标定 & 注意非线性区、温度对读数的影响 \\
+    \hline
+\end{tabular}
+
+\section{易混淆概念辨析}
+
+\subsection{半波电压 vs 半波电位}
+\begin{itemize}
+    \item \textbf{半波电压 \(V_\pi\)}（电光效应）：使输出光强从一个极值变化到另一个极值所需电压。
+    \item \textbf{半波电位}（电化学）：完全不同概念。
+\end{itemize}
+
+\subsection{弛豫时间 \(T_1\) vs \(T_2\)}
+\begin{itemize}
+    \item \hl{\(T_1\) 弛豫（纵向弛豫）}：自旋—晶格相互作用，能量从自旋系统转移到晶格，恢复纵向磁化。
+    \item \hl{\(T_2\) 弛豫（横向弛豫）}：自旋—自旋相互作用，相位失相干，不涉及能量转移。
+    \item 一般 \(T_1 > T_2\)。
+\end{itemize}
+
+\subsection{频率编码 vs 相位编码}
+\begin{itemize}
+    \item \textbf{频率编码}：在信号采集期间持续施加梯度，不同位置的自旋具有不同的进动频率。
+    \item \textbf{相位编码}：在信号采集前短暂施加梯度，不同位置的自旋积累不同的相位差。
+\end{itemize}
+
+\subsection{多层膜GMR vs 自旋阀}
+\begin{itemize}
+    \item \textbf{多层膜GMR}：铁磁层/非磁层交替，零场下反平行（高阻），加场后平行（低阻）。
+    \item \textbf{自旋阀}：四层结构，一层被钉扎、一层为自由层，线性响应好。
+    \item 零场时多层膜GMR为高阻态；自旋阀零场时为低阻态（制备时诱导平行排列）。
+\end{itemize}
+
+\section{所有考点题目汇总（按实验）}
+
+\subsection*{电光效应}
+\begin{enumerate}
+    \item 区分泡克尔斯效应和克尔效应的条件。
+    \item 半波电压的物理意义和测量方法。
+    \item 消光比的定义和计算。
+    \item 倍频调制现象的成因。
+    \item 电光系数的计算公式。
+\end{enumerate}
+
+\subsection*{光纤光栅}
+\begin{enumerate}
+    \item 布拉格条件 \(\lambda_B = 2n_{\text{eff}}\Lambda\) 的物理意义。
+    \item 温度引起波长漂移的两种机制。
+    \item 应变引起波长漂移的两种机制。
+    \item 加载与卸载曲线不重合的原因。
+    \item 光纤光栅传感器的应用。
+\end{enumerate}
+
+\subsection*{磁共振成像}
+\begin{enumerate}
+    \item 为什么用氢核成像？
+    \item 拉莫尔频率和共振条件。
+    \item 90°和180°脉冲的作用。
+    \item \(T_1\) 和 \(T_2\) 弛豫的物理机制。
+    \item 空间编码的原理（频率编码、相位编码、选层梯度）。
+    \item \(k\) 空间与图像重建的关系（\(\rho(\mathbf{r}) = \mathcal{F}^{-1}\{s(\mathbf{k})\}\)）。
+    \item NMR三要素。
+\end{enumerate}
+
+\subsection*{巨磁电阻}
+\begin{enumerate}
+    \item GMR效应的发现者和诺贝尔奖背景。
+    \item 用二流体模型解释GMR效应。
+    \item 磁电阻相对变化率的计算。
+    \item 惠斯登电桥在GMR传感器中的作用。
+    \item 自旋阀的结构和工作原理。
+    \item 交换偏置的物理本质。
+    \item 影响传感器精度的因素（温度、非线性区、地磁场）。
+\end{enumerate}
+
+\end{document}

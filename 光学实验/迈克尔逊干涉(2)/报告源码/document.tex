@@ -1,0 +1,68 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+\usepackage{pdfpages}
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{迈克尔逊干涉仪(二)}
+\begin{document}
+	\maketitle
+	我们测定数据为
+	\[
+	\begin{array}{|c|c|}
+		\hline
+		x_1 \text{ (mm)} & x_2 \text{ (mm)} \\
+		\hline
+		20.125 & 17.758 \\
+		\hline
+	\end{array}
+	\]
+	我们实验采用的玻璃片和三棱镜实验所用的三棱镜折射率相同,从而我们可以测量到$n = 1.516$\\
+	我们可以计算得到
+	\[d = \frac{|x_2-x_1|}{20\times(n-1)} = 0.22936046511627914mm\]
+	我们可以计算B类不确定度.\\
+	对于我们的实验
+	\[u_B(x_1) = \frac{0.01mm}{\sqrt{3}} = 0.005773502691896258mm\]
+	\[u_B(x_2) = \frac{0.01mm}{\sqrt{3}} = 0.005773502691896258mm\]
+	我们的数据$x_1>x_2$,则
+	\[d = \frac{x_1-x_2}{20\times(n-1)}\]
+	\[\frac{\partial d}{\partial x_1} = \frac{1}{20\times(n-1)} = 0.09689922480620154\]
+	\[\frac{\partial d}{\partial x_2} = \frac{1}{20\times(n-1)} = 0.09689922480620154\]
+    \[u(x_1)=u_B(x_1),u(x_2)=u_B(x_1)\]
+    则我们可以计算得到
+    \[U(d) = d\sqrt{(\frac{\partial d}{\partial x_1})^2u(x_1)^2+(\frac{\partial d}{\partial x_2})^2u(x_2)^2} = 0.00018146515074363845mm\]
+    则\[d = (0.2294\pm0.0002)mm\]
+\end{document}

@@ -1,0 +1,100 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\title{微波参数测量}
+\author{张世航}
+\begin{document}
+	\maketitle
+	\section{驻波比的测量}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		信号源频率(GHz)& \multicolumn{3}{|c|}{9.000}&\multicolumn{3}{|c|}{9.200} &\multicolumn{3}{|c|}{9.400}\\
+		\hline
+		 $U_{max}(\mu V)$& 82.0 & 81.9 & 82.0 & 73.0 & 73.0 & 73.2 & 74.2 & 74.3 & 74.9   \\
+		\hline
+		$U_{min}(\mu V)$& 67.0 & 67.0 & 67.0 & 65.0 & 65.0 & 65.0 & 56.0 & 55.8 & 56.0   \\
+		\hline
+		$S=\frac{U_{max}}{U_{min}}$&1.224 & 1.222 & 1.224 & 1.123 & 1.123 & 1.126 & 1.325 & 1.332 & 1.338  \\
+		\hline
+	\end{tabular}
+	
+	\section{波长表}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		波长表读数(mm)& 6.204 & 4.755 & 3.386 \\
+		\hline
+		对应频率(GHz)& 9.165 & 9.348 & 9.549 \\
+		\hline
+		微波信号名义频率(GHz)& 9.000 & 9.200 & 9.400 \\
+		\hline
+	\end{tabular}
+	
+	\section{波导波长及间接法测量频率}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		信号源频率(GHz)& 9.000 & 9.200 & 9.400 \\
+		\hline
+		$l_1(mm)$ & 76.4 & 74.5 & 79.5 \\
+		\hline
+		$l_2(mm)$ & 83.5 & 89.6 & 87.2 \\
+		\hline
+		$l_3(mm)$ & 100.1 & 97.1 & 101.2 \\
+		\hline
+		$l_4(mm)$ & 107.2 & 112.3 & 108.9 \\
+		\hline
+		$D_1(mm)$ &79.950 & 82.050 & 83.350 \\
+		\hline
+		$D_2(mm)$ &103.650 & 104.700 & 105.050
+		 \\
+		\hline
+		$\lambda_g(mm)$ &47.400 & 45.300 & 43.400 \\
+		\hline
+		$\lambda = \frac{\lambda_g}{1+\frac{\lambda_g^2}{\lambda_c^2}}(mm)$ &32.907 & 32.179 & 31.477\\
+		\hline
+		$f(GHz)$ & 9.117&9.323 &9.531\\
+		\hline
+	\end{tabular}
+	
+	\section{微波功率的测量}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		信号源频率(GHz)& 9.000 & 9.200 &  9.400  \\
+		\hline
+		功率(mW)& 17.4 & 15.5 & 16.2   \\
+		\hline
+	\end{tabular}
+	
+\end{document}

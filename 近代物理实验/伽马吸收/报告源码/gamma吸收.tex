@@ -1,0 +1,135 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+\usepackage{pdfpages}
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{$\gamma$射线的吸收}
+\begin{document}
+	\maketitle
+	\section{各个峰的大致图像}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\linewidth]{newplot(1)}
+	\end{figure}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		& CH(道数) & 计数 \\
+		\hline
+		全能峰右半高& 348 & 372 \\
+		\hline
+		全能峰左半高& 311 & 371 \\
+		\hline
+		全能峰& 330 & 737 \\
+		\hline
+		康普顿边缘& 214 & 220 \\
+		\hline
+		反散射峰& 54 & 774 \\
+		\hline
+		X射线峰& 15 & 82 \\
+		\hline
+	\end{tabular}
+	\subsection{定标曲线方程$E = a+b\times CH$}
+	我们直接利用最小二乘法进行拟合.我们对这四个值进行拟合.\\
+    \begin{tabular}{|c|c|c|c|c|}
+    	\hline
+    	& 全能峰 & 康普顿边缘& 反散射峰 &  X射线峰\\
+    	\hline
+    	CH& 330 & 214 & 54 & 15 \\
+    	\hline
+    	理论能量& 0.662&  0.478& 0.184 & 0.032 \\
+    	\hline
+    \end{tabular}\\
+	\[\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{2.pdf}\]\\
+	在我们处理的结果中,
+	\[b = 0.0019306907062004316\]
+	\[a = 0.0431216492747839\]
+	\[R^2 = 0.9844907334848605\]
+	在我们结果中$R^2$很接近1,说明我们的结果大致不错.$b\neq0$说明我们在能量为0的时候道数不为0,可能是因为探测器系统有一个$43.1keV$的能量阈值,可能导致低于这个能量的信号不会被记录或无法被正确分析.\\
+	\subsection{能量分辨率}
+	我们通过全能峰的数据计算能量分辨率.\\
+	\[\eta = \frac{\Delta E}{E}\times100\%\]
+	根据我们拟合的结果
+	\[E_{\text{全能峰左半高}} = (0.0019306907062004316*311+0.0431216492747839)MeV=0.6435664589031181MeV\]
+	\[E_{\text{全能峰右半高}} = (0.0019306907062004316*348+0.0431216492747839)MeV=0.7150020150325341MeV\]
+	\[\eta = \frac{E_\text{全能峰右半高}-E_{\text{全能峰左半高}} }{{E_{\text{全能峰}}}} = 10.790869505954076\%\]
+	\section{$\gamma$射线的吸收}
+	\subsection{Al的吸收}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+	\hline
+	实测厚度& 0 & 9.54mm & 9.44mm & 9.36mm & 9.5mm & 9.46mm \\
+	\hline
+	计数$n$(个)&167  & 127 & 116 & 105 & 86 & 78 \\
+	\hline
+	电流强度$I=\frac{n}{t=100s}(A)$&1.67  & 1.27 & 1.16 & 1.05 & 0.86 & 0.78 \\
+	\hline
+	$lnI$&0.5128 & 0.239 & 0.1484 & 0.04879 & -0.1508 & -0.2485 \\
+	\hline
+\end{tabular}
+\[\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{Al.pdf}\]\\
+\[\mu_{Al} = 0.154cm^{-1}\]
+
+\subsection{Pb的吸收}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+	\hline
+	实测厚度& 0 & 9.54mm & 9.44mm & 9.36mm & 9.5mm & 9.46mm \\
+	\hline
+	计数$n$(个)&167.0 & 145.0 & 117.0 & 101.0 & 94.0 & 65.0 \\
+	\hline
+	电流强度$I=\frac{n}{t=100s}(A)$&1.67 & 1.45 & 1.17 & 1.01 & 0.94 & 0.65 \\
+	\hline
+	$lnI$&0.5128 & 0.3716 & 0.157 & 0.00995 & -0.06188 & -0.4308 \\
+	\hline
+\end{tabular}
+\[\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{Pb.pdf}\]\\
+\[\mu_{Pb} = 1.009cm^{-1}\]
+\subsection{Cu的吸收}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+	\hline
+	实测厚度& 0 & 9.54mm & 9.44mm & 9.36mm & 9.5mm & 9.46mm \\
+	\hline
+	计数$n$(个)&167.0 & 131.0 & 119.0 & 110.0 & 96.0 & 80.0 \\
+	\hline
+	电流强度$I=\frac{n}{t=100s}(A)$&1.67 & 1.31 & 1.19 & 1.1 & 0.96 & 0.8 \\
+	\hline
+	$lnI$&0.5128 & 0.27 & 0.174 & 0.09531 & -0.04082 & -0.2231 \\
+	\hline
+\end{tabular}
+\[\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{Cu.pdf}\]\\
+\[\mu_{Cu} = 0.54cm^{-1}\]
+
+
+\end{document} 

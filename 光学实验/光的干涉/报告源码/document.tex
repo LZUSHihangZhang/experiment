@@ -1,0 +1,58 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{光的干涉}
+\begin{document}
+	\maketitle
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		$\theta_{\frac{\lambda}{2}}$& $1.5^o$ & $11.5^o$ & $21.5^o$ & $31.5^o$ & $41.5^o$ \\
+		\hline
+		$P_2$可以消失的角度$\varphi_2$& $114.5^o$ & $134.0^o$ &$155.5^o$  & $175.5^o$ & $195.1^o他$ \\
+		\hline
+	\end{tabular}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figure_1}
+	\end{figure}
+	
+	
+	$SU(2)\otimes U(1)$
+	
+\end{document} 

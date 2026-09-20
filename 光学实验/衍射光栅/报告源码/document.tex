@@ -1,0 +1,69 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\title{光栅衍射}
+\author{张世航}
+\begin{document}
+	\maketitle
+	\section{实验数据}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		$left Y_2$ & $left Y_1$ & $left G_1$ & center & $right G_1$ & $right Y_1$ & $right Y_2$ \\
+		\hline
+		$255^o35'$ & $255^o38'$ & $256^o9'$ & $265^o19'$ & $274^o27'$ & $274^o58'$ & $275^o$ \\
+		\hline
+		$95^o31'$ & $95^o28'$ & $94^o57'$ & $85^o47'$ & $76^o39'$ & $76^o08'$ & $76^o06'$ \\
+		\hline
+	\end{tabular}
+	\section{数据处理}
+	\[\theta_{green1} = 9^o9',\theta_{yellow1} = 9^o40',\theta_{yellow2}=9^o42.5'\]
+	低压Hg灯的绿光波长为$\lambda=546.07nm$,由\[d = \frac{k\lambda_{green}}{\sin{\theta_k}}=\frac{1\times546.07nm}{sin(9^o9')}=3.4339773\times10^{-6}m\]
+	\[\nu = \frac{1}{d} = \frac{1}{3.4279752\times10^{-6}m} = 2.9120751\times10^5m^{-1}\]
+	
+	\[\lambda_{yellow1} = \frac{d \sin\theta_k}{k} = \frac{\sin\theta_{yellow1}}{sin\theta_{green1}}\lambda_{green}=576.61nm\]
+	\[\lambda_{yellow2} = \frac{d \sin\theta_k}{k} = \frac{\sin\theta_{yellow2}}{sin\theta_{green2}}\lambda_{green}=579.08nm\]
+	我们查阅标准值可知,$\lambda_{yellow1}^{\text{标准}}=576.96 nm$，$\lambda_{yellow2}^{\text{标准}}=579.07 nm$
+	\[\text{黄光1相对误差}= |\frac{\lambda_{yellow1}^{\text{标准}}-\lambda_{yellow1}}{\lambda_{yellow1}^{\text{标准}}}|\times100\%=|\frac{576.96 nm-576.61nm}{576.96 nm}|\times100\% = 0.06\%\]
+	\[\text{黄光2相对误差}= |\frac{\lambda_{yellow2}^{\text{标准}}-\lambda_{yellow2}}{\lambda_{yellow2}^{\text{标准}}}|\times100\%=|\frac{579.07 nm nm-579.08 nm}{579.07 nm}|\times100\% = 0.00173\%\]
+	
+	\[D_{\theta G1} = \frac{k}{d\cos\theta_k}=294960.7699m^{-1}\]
+	\[D_{\theta Y1} = \frac{k}{d\cos\theta_k}=295401.83m^{-1}\]
+	\[D_{\theta Y1} = \frac{k}{d\cos\theta_k}=295438.5043m^{-1}\]
+	
+	由于黄光可以辨别,则
+	\[\Delta\lambda = \lambda_{yellow1}-\lambda_{yellow2} = 2.47nm\]
+	\[R \geqslant \frac{\bar{\lambda}_{yellow}}{\Delta\lambda}=233.9453441\]
+\end{document}

@@ -1,0 +1,113 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{分光计测量物质折射率}
+\begin{document}
+	\maketitle
+	\section{测量三棱镜的折射率}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\varphi_1'$&$\varphi_2'$  & $\varphi_1''$ & $\varphi_2''$&$\delta_{min}^1$ \\
+		\hline
+		$248^o37'$&$209^o56'$  & $68^o37'$ & $29^o56'$ &$ 38^o41'$\\
+		\hline
+	\end{tabular}\\
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\varphi_1'$&$\varphi_2'$  & $\varphi_1''$ & $\varphi_2''$ &$\delta_{min}^2$\\
+		\hline
+		$198^o54'$&$160^o10'$  & $18^o54'$ & $340^o10'$ &$38^o44'$\\
+		\hline
+	\end{tabular}\\
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\varphi_1'$&$\varphi_2'$  & $\varphi_1''$ & $\varphi_2''$ &$\delta_{min}^3$\\
+		\hline
+		$216^o33'$&$177^o48'$  & $36^o33'$ & $357^o48'$ &$38^o45'$\\
+		\hline
+	\end{tabular}
+	
+	\[\delta_{min} = \frac{(\varphi_2'-\varphi_1')+(\varphi_2''-\varphi_1'')}{2}\]
+	\[\bar{\delta}_{min} = \frac{\delta_{min}^1+\delta_{min}^2+\delta_{min}^3}{3}\approx38^o43'\]
+	\[n_{\text{三棱镜}} = \frac{\sin\frac{\bar{\delta}_{min}+A}{2}}{\sin\frac{A}{2}} =1.5176588530685438\]
+	由于我们三次测量相互独立(即我们测量一次就转了一次刻度盘),我们没办法使用间接测量的误差传递公式进行计算.\\
+	我们只能对三次计算出的$\delta_{min}$进行A类不确定度分析.\\
+	\[u_A(\delta_{min}) = \sqrt{\frac{\sum_{i}^{N}(\delta_{min}^i-\bar{\delta}_{min})^2}{N(N-1)}}=0.020030840419245546^o\]
+	\[u_B(\delta_{min}) = \frac{\Delta}{\sqrt{3}} = \frac{\frac{1}{60}^o}{\sqrt{3}} = 0.009622504486493762
+	^o\]
+	\[u_{\delta_{min}} = np.sqrt(u_A^2(\delta_{min})+u_B^2(\delta_{min})) = 0.022222222222223267^o\]
+	\[U = \frac{\partial n}{\partial \delta_{min}}u_{\delta_{min}} = \frac{1}{\sin\frac{A}{2}}\cos\frac{\delta_{min}+A}{2}\times\frac{1}{2}u_{\delta_{min}} =0.000387850944887647\]
+	则\[n = 1.5177\pm0.0004\]
+	\section{测量水的折射率}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\text{分界线}_1$&$\text{十字叉丝}_1$  & $\text{分界线}_2$&$\text{十字叉丝}_2$&$r'$\\
+		\hline
+		$154^o32'$&$156^o47'$  & $334^o32'$ & $336^o47'$  &$ 2^o15' $\\
+		\hline
+	\end{tabular}\\
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\text{分界线}_1$&$\text{十字叉丝}_1$  & $\text{分界线}_2$&$\text{十字叉丝}_2$&$r'$\\
+		\hline
+		$175^o47'$&$178^o2'$  & $355^o47'$ & $358^o2'$ &$ 2^o15' $\\
+		\hline
+	\end{tabular}\\
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\text{分界线}_1$&$\text{十字叉丝}_1$  & $\text{分界线}_2$&$\text{十字叉丝}_2$&$r'$\\
+		\hline
+		$197^o47'$&$200^o2'$  & $17^o47'$ & $20^o2'$ &$ 2^o15' $\\
+		\hline
+	\end{tabular}\\
+	\[\bar{r}' = 2^o15'\]
+	\[\bar{n}_x = \sin{A}\sqrt{n^2 - \sin^2r'} + \cos{A}sinr' = 1.3335211879605458\]
+	对于$r'$,由于三次测量的结果相同,则A类不确定度不存在.\\
+	\[u_{r'} = u_B(r') =  \frac{\Delta}{\sqrt{3}} = \frac{\frac{1}{60}^o}{\sqrt{3}} = 0.009622504486493762
+	^o\]
+	\[U = \sqrt{(\frac{\partial n_x}{\partial \delta_{min}})^2\times u^2(\delta_{min})+(\frac{\partial n_x}{\partial r'})^2\times u^2(r')}\]
+	\[\frac{\partial n_x}{\partial \delta_{min}}u_{\delta_{min}} = \sin{A}\frac{n}{\sqrt{n^2-\sin^2r'}}\frac{1}{\sin\frac{A}{2}}\cos\frac{\delta_{min}+A}{2}\times\frac{1}{2}u_{\delta_{min}} = 0.0002188340339156575\]
+	\[\frac{\partial n_x}{\partial r'}u_{r'} =  [sin{A}\frac{-\sin{r'}\cos{r'}}{\sqrt{n^2-\sin^2{r'}}}+\cos{A}\cos{r'}]u_{r'} = 7.819983676468333\times10^{-5}\]
+	\[u_{n_x} = \sqrt{0.01253826655718989^2+0.004480520605228325^2} = 0.00023238663659905717\]
+	\[n_x = 1.3335\pm 0.0002\]
+\end{document}

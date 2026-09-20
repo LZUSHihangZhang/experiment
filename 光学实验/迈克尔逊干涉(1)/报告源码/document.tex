@@ -1,0 +1,68 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{迈克尔逊干涉(1)}
+\begin{document}
+	\maketitle
+	\section{数据}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\delta n$& 0 & 30 & 60 & 90 \\
+		\hline
+		x/mm & 46.21255 & 46.20297 & 46.19391 & 46.18468 \\
+		\hline
+	\end{tabular}
+	\section{计算}
+	氦氖激光器的波长为\[\lambda_{\text{标准}}=632.8 nm\]
+	
+	直接计算平均值
+	\[\lambda = \frac{2\Delta d}{\Delta n} = \frac{2\times(\Delta d_1+\Delta d_2+\Delta d_3)}{30\times3} = 619.33mm\]
+	相对误差 \[\frac{|619.33mm-632.8mm|}{632.8mm} \times 100\%=2.13\% \]
+	逐差法
+	\[\lambda = \frac{n_3+n_4-n_1-n_2}{(2\times30)^2} = 615.50mm\]
+	相对误差 \[\frac{|615.5m-632.8mm|}{632.8mm} \times 100\%=2.73\% \]
+	\section{误差分析}
+	\[u_A = \sqrt{\frac{\sum_{i=1}^{N}(A_i-\bar{A})^2}{N(N-1)}}=\sqrt{\frac{\sum_{i=1}^{3}(\Delta d_i-\bar{\Delta d})^2}{3\times(3-1)}}=153.7nm\]
+	\[u_B = \frac{1\times10^{-7}}{\sqrt{3}}m = 57.74nm\]
+	\[u = \sqrt{u_A^2+u_B^2} = 163.605nm\]
+	\[\frac{\partial \lambda}{\partial \Delta d_i} = \frac{1}{45}\]
+	\[U = \sqrt{\sum_{i=1}^{3}\frac{\partial \lambda}{\partial \Delta d_i}\times u} = 3.3025769321445257nm\]
+	则\[\lambda = (619.33\pm3.303)nm\]
+
+\end{document}

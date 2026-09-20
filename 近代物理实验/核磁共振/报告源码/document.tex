@@ -1,0 +1,354 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb, physics}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{mathrsfs}
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\title{磁共振成像}
+\author{张世航}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{加入外部脉冲后系统演化的量子力学推导}
+	
+	考虑一个自旋 $1/2$ 粒子（如氢核），磁矩算符为
+	\begin{equation}
+		\hat{\boldsymbol{\mu}} = \gamma \hat{\mathbf{S}} = \frac{\gamma\hbar}{2} \boldsymbol{\sigma},
+	\end{equation}
+	其中 $\boldsymbol{\sigma}=(\sigma_x,\sigma_y,\sigma_z)$ 为 Pauli 矩阵，$\gamma$ 为旋磁比。
+	
+	静磁场沿 $z$ 方向：
+	\begin{equation}
+		\mathbf{B}_0 = B_0 \,\hat{\mathbf{z}}.
+	\end{equation}
+	射频磁场沿 $x$ 方向，频率为 $\omega$，振幅为 $2B_1$（线性极化可分解为两个反向旋转的圆极化分量，共振时只需考虑与自旋进动同向的分量）：
+	\begin{equation}
+		\mathbf{B}_1(t) = 2B_1 \cos(\omega t)\,\hat{\mathbf{x}}.
+	\end{equation}
+	在旋转波近似下，保留与自旋进动同向的圆极化分量，等效磁场为
+	\begin{equation}
+		\mathbf{B}_{\text{eff}}(t) = B_1\bigl( \cos(\omega t)\,\hat{\mathbf{x}} - \sin(\omega t)\,\hat{\mathbf{y}} \bigr).
+	\end{equation}
+	总磁场为
+	\begin{equation}
+		\mathbf{B}(t) = B_0 \hat{\mathbf{z}} + \mathbf{B}_{\text{eff}}(t).
+	\end{equation}
+	系统的哈密顿量为
+	\begin{align}
+		\hat{H}(t) &= -\hat{\boldsymbol{\mu}} \cdot \mathbf{B}(t) \notag\\
+		&= -\gamma B_0 \hat{S}_z - \gamma B_1\Bigl( \hat{S}_x \cos(\omega t) - \hat{S}_y \sin(\omega t) \Bigr). \label{eq:H_lab}
+	\end{align}
+	
+	\subsection{变换到旋转坐标系}
+	
+	定义绕 $z$ 轴以角频率 $\omega$ 旋转的幺正算符
+	\begin{equation}
+		\hat{U}_0(t) = e^{-i\omega t \hat{S}_z/\hbar} = e^{-i(\omega t/2)\sigma_z}.
+	\end{equation}
+	旋转坐标系中的态矢量为
+	\begin{equation}\label{a}
+		\ket{\psi_{\text{rot}}(t)} = \hat{U}_0^\dagger(t) \ket{\psi(t)}.
+	\end{equation}
+	实验室坐标系中的薛定谔方程为
+	\begin{equation}
+		i\hbar \frac{\partial}{\partial t}\ket{\psi(t)} = \hat{H}(t) \ket{\psi(t)}.
+	\end{equation}
+	对 \(\eqref{a}\) 两边求导并代入薛定谔方程，可得旋转坐标系中的薛定谔方程
+	\begin{equation}
+		i\hbar \frac{\partial}{\partial t}\ket{\psi_{\text{rot}}} = \hat{H}_{\text{rot}} \ket{\psi_{\text{rot}}},
+	\end{equation}
+	其中有效哈密顿量为
+	\begin{equation}
+		\boxed{\hat{H}_{\text{rot}} = \hat{U}_0^\dagger \hat{H} \hat{U}_0 - i\hbar \hat{U}_0^\dagger \frac{\partial \hat{U}_0}{\partial t}}. \label{eq:Hrot_def}
+	\end{equation}
+	推导如下：
+	\begin{align}
+		\frac{\partial}{\partial t}\ket{\psi_{\text{rot}}} &= \frac{\partial \hat{U}_0^\dagger}{\partial t} \ket{\psi} + \hat{U}_0^\dagger \frac{\partial \ket{\psi}}{\partial t} \notag\\
+		&= \frac{\partial \hat{U}_0^\dagger}{\partial t} \hat{U}_0 \ket{\psi_{\text{rot}}} + \frac{1}{i\hbar} \hat{U}_0^\dagger \hat{H} \hat{U}_0 \ket{\psi_{\text{rot}}}.
+	\end{align}
+	利用 $\hat{U}_0 \hat{U}_0^\dagger = I$ 求导得 $\frac{\partial \hat{U}_0}{\partial t} \hat{U}_0^\dagger + \hat{U}_0 \frac{\partial \hat{U}_0^\dagger}{\partial t}=0$
+	\begin{equation}
+		\frac{\partial \hat{U}_0^\dagger}{\partial t} = -\hat{U}_0^\dagger \frac{\partial \hat{U}_0}{\partial t} \hat{U}_0^\dagger.
+	\end{equation}
+	因此
+	\begin{equation}
+		\frac{\partial \hat{U}_0^\dagger}{\partial t} \hat{U}_0 = -\hat{U}_0^\dagger \frac{\partial \hat{U}_0}{\partial t}.
+	\end{equation}
+	代入得
+	\begin{equation}
+		\frac{\partial}{\partial t}\ket{\psi_{\text{rot}}} = \left( -\hat{U}_0^\dagger \frac{\partial \hat{U}_0}{\partial t} + \frac{1}{i\hbar} \hat{U}_0^\dagger \hat{H} \hat{U}_0 \right) \ket{\psi_{\text{rot}}}.
+	\end{equation}
+	两边乘以 $i\hbar$ 即得 \eqref{eq:Hrot_def}。
+	
+	\subsection{计算旋转坐标系中的有效哈密顿量}
+	
+	对于 $\hat{U}_0(t)=e^{-i\omega t \hat{S}_z/\hbar}$，有
+	\begin{equation}
+		\frac{\partial \hat{U}_0}{\partial t} = -\frac{i\omega}{\hbar} \hat{S}_z \hat{U}_0.
+	\end{equation}
+	于是
+	\begin{equation}
+		-i\hbar \hat{U}_0^\dagger \frac{\partial \hat{U}_0}{\partial t} = -i\hbar \hat{U}_0^\dagger \left(-\frac{i\omega}{\hbar} \hat{S}_z \hat{U}_0\right) = -\omega \hat{U}_0^\dagger \hat{S}_z \hat{U}_0 = -\omega \hat{S}_z,
+	\end{equation}
+	因为 $[\hat{S}_z, \hat{U}_0]=0$。
+	
+	接下来计算 $\hat{U}_0^\dagger \hat{H} \hat{U}_0$。利用
+	\begin{align}
+		\hat{U}_0^\dagger \hat{S}_z \hat{U}_0 &= \hat{S}_z,\\
+		\hat{U}_0^\dagger \hat{S}_x \hat{U}_0 &= \hat{S}_x \cos(\omega t) - \hat{S}_y \sin(\omega t),\\
+		\hat{U}_0^\dagger \hat{S}_y \hat{U}_0 &= \hat{S}_x \sin(\omega t) + \hat{S}_y \cos(\omega t).
+	\end{align}
+	将实验室哈密顿量 \eqref{eq:H_lab} 变换：
+	\begin{align}
+		\hat{U}_0^\dagger \hat{H} \hat{U}_0 &= -\gamma B_0 \hat{S}_z - \gamma B_1 \Bigl( \hat{U}_0^\dagger \hat{S}_x \hat{U}_0 \cos(\omega t) - \hat{U}_0^\dagger \hat{S}_y \hat{U}_0 \sin(\omega t) \Bigr) \notag\\
+		&= -\gamma B_0 \hat{S}_z - \gamma B_1 \Bigl[ \bigl(\hat{S}_x \cos(\omega t) - \hat{S}_y \sin(\omega t)\bigr)\cos(\omega t) \notag\\
+		&\qquad - \bigl(\hat{S}_x \sin(\omega t) + \hat{S}_y \cos(\omega t)\bigr)\sin(\omega t) \Bigr] \notag\\
+		&= -\gamma B_0 \hat{S}_z - \gamma B_1 \Bigl[ \hat{S}_x (\cos^2\omega t + \sin^2\omega t) - \hat{S}_y (\sin\omega t\cos\omega t - \cos\omega t\sin\omega t) \Bigr] \notag\\
+		&= -\gamma B_0 \hat{S}_z - \gamma B_1 \hat{S}_x.
+	\end{align}
+	因此旋转坐标系中的有效哈密顿量为
+	\begin{equation}
+		\hat{H}_{\text{rot}} = \bigl(-\gamma B_0 \hat{S}_z - \gamma B_1 \hat{S}_x\bigr) - \omega \hat{S}_z = -(\gamma B_0 + \omega)\hat{S}_z - \gamma B_1 \hat{S}_x.
+	\end{equation}
+	在共振条件 $\omega = -\gamma B_0$（即拉莫尔频率 $\omega_0 \equiv |\gamma| B_0$）下，第一项消失：
+	\begin{equation}
+		\boxed{\hat{H}_{\text{rot}} = -\gamma B_1 \hat{S}_x = -\frac{\gamma\hbar B_1}{2}\,\sigma_x}. \label{eq:Hrot_res}
+	\end{equation}
+	这是一个与时间无关的哈密顿量。
+	
+	\subsection{时间演化算符与翻转角}
+	
+	旋转坐标系中的时间演化算符为
+	\begin{equation}
+		\hat{U}_{\text{rot}}(t) = \exp\!\left(-\frac{i}{\hbar}\hat{H}_{\text{rot}} t\right) = \exp\!\left(i\,\frac{\gamma B_1 t}{2}\,\sigma_x\right).
+	\end{equation}
+	定义翻转角
+	\begin{equation}
+		\theta = \gamma B_1 t, \quad \text{则} \quad \hat{U}_{\text{rot}}(t) = \exp\!\left(i\,\frac{\theta}{2}\,\sigma_x\right) = \cos\frac{\theta}{2}\,I + i\sin\frac{\theta}{2}\,\sigma_x.
+	\end{equation}
+	
+	\subsection{对单个自旋态的作用}
+	初始时刻（热平衡）自旋处于 $+z$ 方向的本征态 $\ket{\uparrow_z} = \begin{pmatrix}1\\0\end{pmatrix}$，则
+	\begin{align}
+		\ket{\psi_{\text{rot}}(t)} &= \hat{U}_{\text{rot}}(t)\ket{\uparrow_z} \notag\\
+		&= \Bigl(\cos\frac{\theta}{2}\,I + i\sin\frac{\theta}{2}\,\sigma_x\Bigr)\ket{\uparrow_z} \notag\\
+		&= \cos\frac{\theta}{2}\ket{\uparrow_z} + i\sin\frac{\theta}{2}\ket{\downarrow_z}.
+	\end{align}
+	实验室坐标系中的态为
+	\begin{equation}
+		\begin{aligned}
+			\ket{\psi(t)} &= \hat{U}_0(t)\ket{\psi_{\text{rot}}(t)}
+			               = e^{-i\omega t \hat{S}_z/\hbar}\Bigl(\cos\frac{\theta}{2}\ket{\uparrow_z}
+			               + i\sin\frac{\theta}{2}\ket{\downarrow_z}\Bigr) \\
+			&= \cos\frac{\theta}{2}\,e^{-i\omega t/2}\ket{\uparrow_z}
+			   + i\sin\frac{\theta}{2}\,e^{i\omega t/2}\ket{\downarrow_z}.
+		\end{aligned}
+	\end{equation}
+	
+	\subsection{宏观磁化矢量的演化}
+	初始密度矩阵（热平衡，忽略非对角元）为
+	\begin{equation}
+		\hat{\rho}(0) = \frac{1}{2}I + \frac{M_0}{\gamma\hbar/2}\,\hat{S}_z,
+	\end{equation}
+	其中 $M_0$ 为平衡磁化强度。在旋转坐标系中，
+	\begin{equation}
+		\hat{\rho}_{\text{rot}}(t) = \hat{U}_{\text{rot}}(t)\,\hat{\rho}(0)\,\hat{U}_{\text{rot}}^\dagger(t) = \frac{1}{2}I + \frac{M_0}{\gamma\hbar/2}\Bigl(\cos\theta\,\hat{S}_z - \sin\theta\,\hat{S}_y\Bigr).
+	\end{equation}
+	这表明宏观磁化矢量从 $+z$ 方向以角速度 $\omega_1 = \gamma B_1$ 绕 $x$ 轴旋转，角度 $\theta = \omega_1 t$。
+	
+	\subsection{90°脉冲和180°脉冲的定义}
+	\begin{itemize}
+		\item \textbf{90°脉冲}：$t = t_{90}$ 使 $\theta = \gamma B_1 t_{90} = \pi/2$。此时磁化矢量从 $+z$ 完全翻转到 $xy$ 平面（沿 $-y$ 方向，取决于相位约定），横向磁化最大。
+		\item \textbf{180°脉冲}：$t = t_{180}$ 使 $\theta = \gamma B_1 t_{180} = \pi$。此时磁化矢量从 $+z$ 翻转到 $-z$，横向磁化为零；若施加在横向磁化之后，则使横向相位反转，实现重聚。
+	\end{itemize}
+	
+	\subsection{结论}
+	通过变换到旋转坐标系，含时哈密顿量变为定常哈密顿量 $-\gamma B_1 \hat{S}_x$，从而可以严格求解时间演化。翻转角 $\theta = \gamma B_1 t_p$ 直接给出脉冲的作用效果，90°和180°脉冲是磁共振成像中最基本的操控手段。
+	
+	\section{成像的推导}
+	
+	考虑一个位于 $\mathbf{r}$ 处的自旋（氢核），磁矩为 $\boldsymbol{\mu}$。在静磁场 $\mathbf{B}_0 = B_0 \hat{\mathbf{z}}$ 中，它以拉莫尔频率
+	\begin{equation}
+		\omega_0 = \gamma B_0
+	\end{equation}
+	绕 $z$ 轴进动。用一个 $90^\circ$ 射频脉冲将其翻转到横向平面后，其横向磁矩分量在实验室坐标系中为
+	\begin{equation}
+		\mu_{xy}(t) = \mu_\perp \, e^{-i(\omega_0 t + \phi_0)},
+	\end{equation}
+	其中 $\mu_\perp$ 是横向磁矩的大小，$\phi_0$ 是初始相位（脉冲结束时的相位）。该旋转磁矩在接收线圈中产生感应电动势，信号正比于 $\mu_{xy}(t)$。
+	
+	对于宏观样品，接收信号是所有自旋横向磁化之和。设单位体积内的自旋数目正比于质子密度 $\rho(\mathbf{r})$，则体元 $\mathrm{d}^3r$ 的贡献为 $\rho(\mathbf{r})\,\mu_\perp\,\mathrm{d}^3r$。为简化，取 $\mu_\perp=1$（归一化），总信号为
+	\begin{equation}
+		S(t) \propto \int \rho(\mathbf{r})\, e^{-i(\omega_0 t + \phi_0(\mathbf{r}))}\, \mathrm{d}^3r.
+	\end{equation}
+	
+	\subsection{梯度磁场与空间编码}
+	
+	为了区分不同位置的自旋，在静磁场上叠加线性梯度磁场。以二维成像为例，假设成像层面为 $xy$ 平面，层面选择由 $z$ 方向梯度完成（后述）。层面内的空间编码分两个方向：频率编码（$x$）和相位编码（$y$）。
+	
+	\subsubsection{频率编码}
+	
+	在信号采集期间，施加沿 $x$ 方向的梯度 $G_x$：
+	\begin{equation}
+		B(x) = B_0 + G_x \cdot x.
+	\end{equation}
+	则位于 $x$ 处的自旋进动频率为
+	\begin{equation}
+		\omega(x) = \gamma (B_0 + G_x x) = \omega_0 + \gamma G_x x.
+	\end{equation}
+	假设 $90^\circ$ 脉冲结束时（$t=0$）所有自旋相位一致（$\phi_0=0$），则横向磁化随时间演化为
+	\begin{equation}
+		\mu_{xy}(x,t) \propto \rho(x) \, e^{-i(\omega_0 + \gamma G_x x)t}.
+	\end{equation}
+	整个样品沿 $x$ 方向的总信号为
+	\begin{equation}
+		S(t) \propto \int \rho(x) \, e^{-i(\omega_0 + \gamma G_x x)t} \, \mathrm{d}x.
+	\end{equation}
+	乘以 $e^{i\omega_0 t}$ 解调（去除载频），得到基带信号：
+	\begin{equation}
+		s(t) = \int \rho(x) \, e^{-i \gamma G_x x \, t} \, \mathrm{d}x.
+		\label{eq:freq_encode}
+	\end{equation}
+	定义空间频率变量
+	\begin{equation}
+		k_x = \frac{\gamma G_x t}{2\pi},
+	\end{equation}
+	则 \eqref{eq:freq_encode} 变为
+	\begin{equation}
+		s(k_x) = \int \rho(x) \, e^{-i 2\pi k_x x} \, \mathrm{d}x.
+	\end{equation}
+	即 $s(k_x)$ 是 $\rho(x)$ 的傅里叶变换。随着时间 $t$ 线性增加，$k_x$ 扫描傅里叶空间的一条线。重建时对 $s(k_x)$ 做逆傅里叶变换即可得到 $\rho(x)$。
+	
+	\subsubsection{相位编码}
+	
+	对于二维图像 $\rho(x,y)$，需要在 $y$ 方向也进行编码。在频率编码之前，先短暂地施加一个 $y$ 方向的梯度 $G_y$，持续时间为 $T_y$。在此期间，位于 $y$ 处的自旋进动频率为 $\omega_0 + \gamma G_y y$，经过时间 $T_y$ 后积累的相位为
+	\begin{equation}
+		\phi(y) = \gamma G_y y \, T_y.
+	\end{equation}
+	撤掉 $G_y$ 后，所有自旋的频率恢复为 $\omega_0$，但相位差 $\phi(y)$ 被保留。这就是“相位编码”。
+	
+	接着进行频率编码（施加 $G_x$），同时采集信号。此时位于 $(x,y)$ 的自旋对信号的贡献为
+	\begin{equation}
+		\mu_{xy}(x,y,t) \propto \rho(x,y) \, e^{-i[\omega_0 t + \gamma G_x x \, t + \phi(y)]}.
+	\end{equation}
+	解调后基带信号为
+	\begin{equation}
+		s(t) = \iint \rho(x,y) \, e^{-i \gamma G_x x \, t} \, e^{-i \gamma G_y y \, T_y} \, \mathrm{d}x\,\mathrm{d}y.
+	\end{equation}
+	定义
+	\begin{equation}
+		k_x = \frac{\gamma G_x t}{2\pi}, \qquad k_y = \frac{\gamma G_y T_y}{2\pi},
+	\end{equation}
+	则有
+	\begin{equation}
+		s(k_x, k_y) = \iint \rho(x,y) \, e^{-i 2\pi (k_x x + k_y y)} \, \mathrm{d}x\,\mathrm{d}y.
+		\label{eq:2d_ft}
+	\end{equation}
+	这意味着 $s(k_x,k_y)$ 正是 $\rho(x,y)$ 的二维傅里叶变换。
+	
+	通过改变相位编码梯度 $G_y$ 的幅度（或持续时间 $T_y$），我们可以遍历 $k_y$ 的不同值；在每个 $k_y$ 下，采集 $s(t)$ 随时间 $t$ 的变化，得到 $k_x$ 方向的扫描。最终填满整个二维 $k$ 空间。
+	
+	\subsection{$k$ 空间与图像重建}
+	
+	定义 $k$ 空间矢量 $\mathbf{k} = (k_x, k_y)$，则 \eqref{eq:2d_ft} 可写为
+	\begin{equation}
+		s(\mathbf{k}) = \iint \rho(\mathbf{r}) \, e^{-i 2\pi \mathbf{k}\cdot\mathbf{r}} \, \mathrm{d}^2r.
+	\end{equation}
+	这是 $\rho(\mathbf{r})$ 的傅里叶变换。对 $s(\mathbf{k})$ 做逆傅里叶变换即得到图像：
+	\begin{equation}
+		\rho(\mathbf{r}) = \iint s(\mathbf{k}) \, e^{i 2\pi \mathbf{k}\cdot\mathbf{r}} \, \mathrm{d}^2k.
+	\end{equation}
+	
+	在实际 MRI 中，$k$ 空间是离散采集的，通常使用快速傅里叶变换（FFT）进行重建。梯度脉冲的时序决定了 $k$ 空间的轨迹：频率编码对应沿 $k_x$ 方向直线行走，相位编码对应 $k_y$ 方向离散跳跃。
+	
+	\subsection{选层梯度（三维定位）}
+	
+	以上讨论假定已选择特定的 $xy$ 平面。要实现层面选择，在施加射频脉冲的同时，沿 $z$ 方向施加梯度 $G_z$。此时静磁场变为 $B(z) = B_0 + G_z z$，拉莫尔频率 $\omega(z) = \gamma(B_0+G_z z)$。射频脉冲具有有限的带宽 $\Delta \omega$，它只能激发满足
+	\begin{equation}
+		|\omega(z) - \omega_{\text{RF}}| \le \frac{\Delta \omega}{2}
+	\end{equation}
+	的区域，对应的层厚为
+	\begin{equation}
+		\Delta z = \frac{\Delta \omega}{\gamma G_z}.
+	\end{equation}
+	通过调整射频脉冲的中心频率和带宽，可以选择任意层面的位置和厚度。
+	
+	\subsection{一般三维成像}
+	
+	三维成像直接在三个方向使用梯度编码。在激发后，施加 $G_x$、$G_y$、$G_z$ 梯度，积累的相位为
+	\begin{equation}
+		\Phi(\mathbf{r},t) = \gamma \int_0^t \mathbf{G}(\tau)\cdot\mathbf{r} \, \mathrm{d}\tau.
+	\end{equation}
+	定义
+	\begin{equation}
+		\mathbf{k}(t) = \frac{\gamma}{2\pi} \int_0^t \mathbf{G}(\tau)\, \mathrm{d}\tau,
+	\end{equation}
+	则信号方程为
+	\begin{equation}
+		s(\mathbf{k}) = \int \rho(\mathbf{r}) \, e^{-i 2\pi \mathbf{k}\cdot\mathbf{r}} \, \mathrm{d}^3r,
+	\end{equation}
+	即 $\rho(\mathbf{r})$ 的三维傅里叶变换。重建由逆三维傅里叶变换完成。
+	
+	\subsection{总结}
+	
+	\begin{itemize}
+		\item MRI 信号是质子密度 $\rho(\mathbf{r})$ 与相位因子的积分，相位由梯度脉冲控制。
+		\item 通过梯度磁场，信号 $s(\mathbf{k})$ 成为 $\rho(\mathbf{r})$ 的傅里叶变换。
+		\item $k$ 空间是空间频率域，MRI 数据在 $k$ 空间中采集。
+		\item 逆傅里叶变换重建出图像 $\rho(\mathbf{r})$。
+	\end{itemize}
+\section{实验结果}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{1}
+	\caption{SF-主频,\(90^o,180^o\)脉宽寻找}
+	\label{fig:1}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{2}
+	\caption{单组分反演}
+	\label{fig:2}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{3}
+	\caption{\(T_1\)弛豫}
+	\label{fig:3}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{6}
+	\caption{\(T_2\)衰减}
+	\label{fig:6}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{4}
+	\caption{单组分反演}
+	\label{fig:4}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{5}
+	\caption{成像情况(图层1-4)}
+	\label{fig:5}
+\end{figure}
+可以看到 \(T_1 = 600.197\,\text{ms}\)，\(T_2 = 242.177\,\text{ms}\)。我们从微观的物理机制角度分析 \(T_1\) 弛豫：质子吸收射频波的能量后，处于高能态的质子数目增加，而 \(T_1\) 弛豫是质子通过释放已吸收的能量，以恢复到高能态平衡的过程，所以 \(T_1\) 弛豫称为旋--晶格弛豫。与 \(T_1\) 弛豫不同，\(T_2\) 弛豫的物理机制是自旋--自旋相互作用所导致的质子自旋磁矩 \(xy\) 分量相位同步性丧失，所以 \(T_2\) 弛豫称为自旋--自旋弛豫。这一过程仅依赖质子自旋耦合，不需要质子通过与外界（晶格）发生能量交换，且发生速率很快。
+
+
+\end{document}

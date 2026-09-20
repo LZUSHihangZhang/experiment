@@ -1,0 +1,98 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+\usepackage{pdfpages}
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{双棱镜}
+\begin{document}
+	\maketitle
+	\begin{table}[h]
+		\centering % 使整个表格居中
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\(x_1\) & \(x_2\) & \(\Delta x = \frac{|x_1 - x_2|}{4}\) \\
+			\hline
+			\(2.218\,\mathrm{mm}\) & \(3.944\,\mathrm{mm}\) & \(0.4315\,\mathrm{mm}\)  \\
+			\hline
+		\end{tabular}
+	\end{table}
+    
+    
+    \begin{table}[h]
+    	\centering % 使整个表格居中
+    	\begin{tabular}{|c|c|c|}
+    		\hline
+    		\(x_{\text{狭缝}}\) & \(x_{\text{目镜}}\) & $x_{\text{凸透镜}}$ \\
+    		\hline
+    		\(146.85\,\mathrm{cm}\) & \(78.57\,\mathrm{cm}\) & \(102.50\,\mathrm{c从m}\)  \\
+    		\hline
+    	\end{tabular}
+    \end{table}
+    
+    \begin{table}[h]
+    	\centering % 使整个表格居中
+    	\begin{tabular}{|c|c|}
+    		\hline
+    		\(x_1'\) & \(x_2'\)  \\
+    		\hline
+    		\(5.137\,\mathrm{mm}\) & \(5.517\,\mathrm{mm}\) \\
+    		\hline
+    	\end{tabular}
+    \end{table}
+    
+    \[a = x_{\text{狭缝}} - x_{\text{凸透镜}} = 44.35cm\]
+    \[b = x_{\text{凸透镜}} - x_{\text{目镜}} = 23.93cm\]    
+    \[D = x_{\text{狭缝}} - x_{\text{目镜}} - 15.2cm= 53.08cm\]
+    \[x_1' = 5.137mm , x_2' = 5.517mm\]
+    
+    \[L' = x_2'- x_1' = 0.380mm\]
+    \[L = \frac{a}{b}L' = 0.7043mm\]
+    \[\lambda = L\frac{\Delta x}{d} = 573.9nm\]
+    \textbf{不确定度的计算}\\
+    由于我们只进行了一次测量我们只能计算b类不确定度.\\
+    \[u_a=u_{a}^B = \frac{0.1cm}{\sqrt{3}} = 5.773502691896\times10^{-2}m\]
+    \[u_b=u_{b}^B = \frac{0.01cm}{\sqrt{3}} = 5.773502691896\times10^{-2}m\]
+    \[u_{L'}=u_{L'}^B = \frac{0.01mm}{\sqrt{3}} = 5.773502691896\times10^{-4}m\]
+    \[u_{\Delta x} =u_{\Delta x}^B= \frac{0.01mm}{\sqrt{3}} = 5.773502691896\times10^{-4}m\]
+    \[U = \sqrt{(\frac{\partial\lambda}{\partial a})^2u_a^2 + (\frac{\partial\lambda}{\partial b})^2u_b^2  + (\frac{\partial\lambda}{\partial L'})^2u_{L'}^2 +(\frac{\partial\lambda}{\partial \Delta x})^2u_{\Delta x}^2} \]
+    \[\frac{\partial\lambda}{\partial a} = \frac{1}{b}L'\frac{\Delta x}{d} = \frac{\lambda}{a}\]
+    \[\frac{\partial\lambda}{\partial b} = -\frac{a}{b^2}L'\frac{\Delta x}{d} = -\frac{1}{b}\lambda\]
+    \[\frac{\partial\lambda}{\partial L'} = \frac{a}{b}\frac{\Delta x}{d} = \frac{\lambda}{L'}\]
+    \[\frac{\partial\lambda}{\partial \Delta x} = \frac{a}{b}L'\frac{1}{d} = \frac{\lambda}{\Delta x}\]
+    \[U = \lambda\sqrt{(\frac{u_a}{a})^2+(-\frac{u_b}{b})^2+(\frac{u_a}{L'})^2+(\frac{u_{\Delta x}}{\Delta x})^2+(\frac{u_{D}}{\Delta D})^2}=24.5nm\]
+    则\[\lambda = (573.9\pm24.5)nm\]
+\end{document}

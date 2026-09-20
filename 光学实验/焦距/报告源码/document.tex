@@ -1,0 +1,110 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\title{焦距的测定}
+\author{张世航}
+\begin{document}
+	\maketitle
+	\section{自准法测凸透镜焦距}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		$x_1(cm)$& \multicolumn{6}{|c|}{$x_2(cm)$}\\
+		\hline
+		$10.00$& 24.70 & 24.80 & 24.90 & 25.00 & 25.10 & 25.20   \\
+		\hline
+		$10.00$& 25.20 & 25.13 & 25.03 & 24.95 & 24.85 & 24.83   \\
+		\hline
+	\end{tabular}
+	
+	\section{位移法测凸透镜焦距}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		$N$& $A_1(cm)$ & $A_2(cm)$ & $A=A_1-A_2(cm)$ & $L_1(cm)$ & $L_2(cm)$ & $L=L_1-L_2(cm)$ &$f=\frac{A^2-L^2}{4A}(cm)$  \\
+		\hline
+		1& 10.00 & 100.00 & 90.00 & 28.62 & 81.62 & 53.00 & 14.67 \\
+		\hline
+		2& 10.00 & 100.00 & 90.00 & 28.60 & 81.64 & 52.96 & 14.70 \\
+		\hline
+		3& 10.00 & 100.00 & 90.00 & 28.62 & 81.58 & 52.96 & 14.70 \\
+		\hline
+		4& 10.00 & 100.00 & 90.00 & 28.65 & 81.61 & 52.96 & 14.70 \\
+		\hline
+		5& 10.00 & 100.00 & 90.00 & 28.61 & 81.61 & 53.00 & 14.67 \\
+		\hline
+		6& 10.00 & 100.00 & 90.00 & 28.58 & 81.65 & 53.01 & 14.69 \\
+		\hline
+		平均值&10.00&100.00&90.00&28.613&81.618&52.982&14.688\\
+		\hline
+	\end{tabular}
+	
+	\section{误差分析}
+	\subsection{自准法}
+	利用A类误差公式\[u_A = \sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n(n-1)}}t_p\]
+	我们取\[t_p = 0.683\]
+	和B类误差公式
+	\[u_B = \frac{\Delta_{\text{仪器}}}{C}\]
+	我们取\[C = \sqrt{3}\]
+	我们可以得到
+	\[u_{x_1} = 0.06612cm\]
+	\[u_{x_2} = 0.05774cm\]
+		根据
+	\[U_r = \sqrt{\sum_{i=1}^n(\frac{\partial lnf}{\partial x_i})^2u_c^2(x_i)}\]
+	\[U = \bar{f}U_r = 0.08778cm\]
+	则\[f = (14.974\pm0.08778)cm\]
+	\subsection{位移法}
+	利用A类误差公式\[u_A = \sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n(n-1)}}t_p\]
+	我们取\[t_p = 0.683\]
+	和B类误差公式
+	\[u_B = \frac{\Delta_{\text{仪器}}}{C}\]
+	我们取\[C = \sqrt{3}\]
+	我们可以得到
+	\[u_{A_1} = 0.05810194200235001cm\]
+	\[u_{A_2} = 0.058148757820878cm\]
+	\[u_{L_1} = 0.05773502691896258cm\]
+	\[u_{L_2} = 0.05773502691896258cm\]
+	根据
+	\[U_r = \sqrt{\sum_{i=1}^n(\frac{\partial lnf}{\partial x_i})^2u_c^2(x_i)}\]
+	\[U = \bar{f}U_r\]
+	\[\frac{\partial lnf}{\partial A_1}= \frac{1}{f}(\frac{1}{4}+\frac{L^2}{4A^2})=0.022919cm^{-1}\]
+	\[\frac{\partial lnf}{\partial A_2}= -\frac{1}{f}(\frac{1}{4}+\frac{L^2}{4A^2})=0.022919cm^{-1}\]
+	\[\frac{\partial lnf}{\partial L_1} = -\frac{1}{f}\frac{L}{2A}=0.02004cm^{-1}\]
+	\[\frac{\partial lnf}{\partial L_2} = \frac{1}{f}\frac{L}{2A}=0.02004cm^{-1}\]
+	\[U = fU_r = 0.03651157204495233cm\]
+	则\[f = (14.688\pm0.0365)cm\]
+	
+	
+    $\int_0^\infty(-2r)e^{-4\alpha r}dr$
+\end{document}

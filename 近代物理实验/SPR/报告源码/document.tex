@@ -1,0 +1,97 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+\usepackage{pdfpages}
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{SPR}
+\begin{document}
+	\maketitle
+	\section{原始数据处理}
+	\[\includegraphics[width=\textwidth, height=0.5\textheight, keepaspectratio]{SPR_curves_with_FWHM.pdf}\]
+    根据图示\\
+    
+    \scalebox{0.7}{%
+    	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    		\hline
+    		甘油浓度 & $0\%$ & $5\%$ & $10\%$ & $15\%$ & $20\%$ & $25\%$ & 未知1 & 未知2 \\
+    		\hline
+    		$(\lambda, amplitude)$ & $(644.3,76.619)$ & $(660.1,76.297)$ & $(671.9,74.774)$ & $(690.9,73.590)$ & $(709.0,70.730)$ & $(727.2,70.167)$ & $(666.1,70.925)$ & $(713.2,71.510)$ \\
+    		\hline
+    		折射率$n$&$ 1.3336$&$1.3401$&$1.3476$&$1.3564$&$1.3646$&$1.3721$&$1.3477$&$1.3661$\\
+    		\hline
+    		半高宽(FWHM)&$109.2nm$&$120.9nm$&$119.9nm$&$122.4nm$&$167.1nm$&$155.7nm$&$143.4nm$&$154.3nm$\\
+    		\hline
+    		半高(half-height)&$11.58nm$&$12.55nm$&$12.95$&$12.75nm$&$15.62$&$14.12nm$&$14.18nm$&$14.74nm$\\
+    		\hline
+    	\end{tabular}%
+    }
+    \section{计算未知样品}
+    \subsection{利用峰值计算}
+    利用不同浓度的数据计算两个未知的.\\
+    \[\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{2.pdf}\]
+    \[k = 3.3154285714285736\]
+    \[b = 642.4571428571429\]
+    得到未知1为$7.131161668390196\%$,未知2为$21.337469837986884\%$的甘油.\\
+    \subsection{利用折射率计算}
+    我们利用不同浓度的折射率进行计算.\\
+    \[\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{4.pdf}\]
+    我们带入两个未知样品的折射率
+    \[\text{未知样品1浓度} = (635.6990839270819\times1.3477-847.2194411029856)\% = 9.51221430554267\%\]
+    \[\text{未知样品2浓度} = (635.6990839270819\times1.3661-847.2194411029856)\% = 21.209077449801043\%\]
+    \section{光纤表面等离子体共振(SPR)传感传感性能评价}
+    \[\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{3.pdf}\]\\
+    对于$S = \frac{\Delta \lambda}{\Delta n}$,我们对各个已知样品进行最小二乘法拟合.
+    得到$S = 2111.6406 nm$\\
+    \scalebox{0.7}{%
+    	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    		\hline
+    		甘油浓度 & $0\%$ & $5\%$ & $10\%$ & $15\%$ & $20\%$ & $25\%$ & 未知1 & 未知2 \\
+    		\hline
+    		$(\lambda, amplitude)$ & $(644.3,76.619)$ & $(660.1,76.297)$ & $(671.9,74.774)$ & $(690.9,73.590)$ & $(709.0,70.730)$ & $(727.2,70.167)$ & $(666.1,70.925)$ & $(713.2,71.510)$ \\
+    		\hline
+    		折射率$n$&$ 1.3336$&$1.3401$&$1.3476$&$1.3564$&$1.3646$&$1.3721$&$1.3477$&$1.3661$\\
+    		\hline
+    		半高宽(FWHM)&$109.2nm$&$120.9nm$&$119.9nm$&$122.4nm$&$167.1nm$&$155.7nm$&$143.4nm$&$154.3nm$\\
+    		\hline
+    		半高(half-height)&$11.58nm$&$12.55nm$&$12.95$&$12.75nm$&$15.62$&$14.12nm$&$14.18nm$&$14.74nm$\\
+    		\hline
+    		FOM&19.34 &17.47 &17.61&  17.25& 12.64 &13.56&14.73 & 13.69\\
+    		\hline
+    		
+    	\end{tabular}%
+    }\\我们可以得到\[\bar{FOM} = 15.784633872868678\]
+\end{document}

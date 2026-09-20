@@ -1,0 +1,26 @@
+# LaTeX 编译产物
+*.aux
+*.log
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+missfont.log
+texput.log
+
+# 编辑器 / IDE
+.vscode/
+.vs/
+.idea/
+*.swp
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 通用
+*.bak

@@ -1,0 +1,172 @@
+% !TEX program = xelatex
+\documentclass[10pt, a4paper,twocolumn]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{单光子计数}
+\begin{document}
+	\maketitle
+	\section{没有扣除背景的功率-光子平均计数曲线}
+
+	
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{5}
+		\caption{不同温度下的光功率和单光子计数值}
+		\label{fig:5}
+	\end{figure}
+	\section{最小二乘法拟合}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{6}
+		\caption{$T = 10^oC$,横截据:$0.077695325269696\mu W$,这意味着这是可以探测到的最小功率.}
+		\label{fig:6}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{7}
+		\caption{$T = 0^oC$,横截据:$0.09799420694829498\mu W$,这意味着这是可以探测到的最小功率.}
+		\label{fig:7}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{8}
+		\caption{$T = -10^oC$,横截据:$0.06838377863222568\mu W$,这意味着这是可以探测到的最小功率.}
+		\label{fig:8}
+	\end{figure}
+     \section{功率的计算}
+     
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$10^oC$& 阈值14 && 暗计数11& \\
+		\hline
+		I(mA)& $P_0/\mu W$ &$P_1/10^{-11}W$& 光计数R &$P_2/10^{-13}W$\\
+		\hline
+		0.2& 0.85 &0.953630885 &47307 &1.25458164\\
+		\hline
+		0.2& 0.9 &1.00972682 &50374 &1.33591848\\
+		\hline
+		0.2& 0.95 &1.06582275 &53170 &1.41006840\\
+		\hline
+		0.2& 1.00 & 1.12191869&56396 &1.49562192\\
+		\hline
+		0.2& 1.05 &1.17801462 &59591 &1.58035332\\
+		\hline
+	\end{tabular}\\
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$0^oC$& 阈值14 && 暗计数10 &\\
+		\hline
+		I(mA)& $P_0/\mu W$ &$P_1/10^{-11}W$&光计数R &$P_2/10^{-13}W$\\
+		\hline
+		0.2& 0.85 &0.953630885 &46979 &1.24588308\\
+		\hline
+		0.2& 0.9 &1.00972682& 50060 &1.32759120\\
+		\hline
+		0.2& 0.95 & 1.06582275&53464&1.41786528 \\
+		\hline
+		0.2& 1.01 & 1.12191869&56902 &1.50904104\\
+		\hline
+		0.2& 1.05 & 1.17801462&59812 &1.58594904\\
+		\hline
+		0.2& 1.10 &1.23411056 &62468 &1.65665136\\
+		\hline
+	\end{tabular}\\
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$-10^oC$& 阈值14 & &暗计数10& \\
+		\hline
+		I(mA)& $P_0/\mu W$&$P_1/10^{-11}W$ & 光计数 
+		R&$P_2/10^{-13}W$\\
+		\hline
+		0.2& 0.85&0.953630885 & 47293& 1.25421036\\
+		\hline
+		0.2& 0.9&1.00972682 & 50323 &1.33986996\\
+		\hline
+		0.2& 0.95&1.06582275 & 53487 &1.44234324\\
+		\hline
+		0.2& 1.00&1.12191869& 56590& 1.50076680\\
+		\hline
+		0.2& 1.05&1.17801462& 59474 &1.57725048\\
+		\hline
+	\end{tabular}\\
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=0.7\linewidth]{a}
+    	\caption{两种功率的对比}
+    	\label{fig:a}
+    \end{figure}
+    
+	
+	我们有两种的功率的计算方式，一种是利用功率器中的功率减去滤波器和单色片的功率$P_1$；一种为利用光子计数计算出来的功率$P_2$。
+	\subsection{$P_1$的计算}
+	在我们的实验中，入射到光电倍增管上的光功率为$P_0$，本实验先用功率计测出入射光的功率P，并按照下式计算$P_0$
+	\begin{equation}
+		P_1 = At\alpha K(\frac{\Omega_2}{\Omega_1})P_0
+	\end{equation}
+	
+	我们有两个$AB_2$片和一个单色片
+	则$A=0.88,t=0.019\times0.019$
+	其中$\frac{\Omega_2}{\Omega_1}=0.018$，我们没有半透半反镜，则$K=1$  
+    则
+    \begin{align}
+    	\begin{split}
+    		P_1 & = At\alpha K(\frac{\Omega_2}{\Omega_1})P_0\\
+    		    & =0.88\times0.019\times0.019\times0.018\times2\times(1-0.019)\times P_0\\
+    	\end{split}
+    \end{align}
+    \subsection{$P_2$的计算}
+    \begin{equation}
+    	E = \frac{hc}{\lambda} = 3.9779999999999987\times10^{-19}J
+    \end{equation}
+    \begin{equation}
+    	P_2 = RE/\eta = R\times E /0.15 
+    \end{equation}
+    
+    \section{信噪比}
+
+    \begin{equation}
+    	SNR = \frac{N_R}{\sqrt{2N_t+N_R}}
+    \end{equation}
+    由于我们的暗计数是在$P_0 = 0.95\mu W$的时候计算得到
+    则我们可以得到$T = 10^oC,0^oC,-10^oC$的时候的信噪比为$230.53851977,231.17960005,233.16733766$
+
+\end{document} 

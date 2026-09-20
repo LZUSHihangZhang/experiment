@@ -1,0 +1,119 @@
+\documentclass[10pt, a4paper]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\author{张世航}
+\title{黑体辐射}
+\begin{document}
+	\maketitle
+	\section{测量结果和Planck公式的对比}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{results}
+		\caption{原始数据和理论数据的对比}
+		\label{fig:result}
+	\end{figure}
+	
+	\section{Stefan-Boltzmann定律}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{Wen}
+		\caption{最小二乘法拟合}
+		\label{fig:wen}
+	\end{figure}
+	\subsection{导体表面的辐射压强}
+	入射电磁波的平均动量为$\bar{g}$,每秒通过单位横截面的电磁波的动量为\[\bar{g}c=\bar{\omega}_i\]
+	$\bar{\omega}_i$为入射电磁波的平均能量密度.法向分量为$\bar{\omega}_icos\theta$,这一部分入射到$1/cos\theta$的面积上,则每秒入射到单位面积的动量法向分量为\[\bar{\omega}_icos^2\theta\] 由于反射,动量的变化率为两倍,即$2\bar{\omega}_icos^2\theta$,则\[P = 2\bar{\omega}_icos^2\theta\]
+	在导体外部
+	\[\textbf{E} = \textbf{E}_i+\textbf{E}_r\]
+	\[E^2=E^2_i+E^2_r+2Re(\textbf{E}_i^*\cdot\textbf{E}_r)\]
+	第三部分为相位叠加,在空间平均为0,第二部分和第一部分在空间的平均$\omega_i$和$\omega_r$相等\[\omega_i=\omega_r= \frac{1}{2}\omega\]
+	\[P=\bar{\omega}cos^2\theta\]
+	若电磁波从各个方向入射,则
+	\[P = \frac{\bar{\omega}}{3}\]
+	\subsection{Stefan-Boltzmann定律的热力学证明}
+	我们上面得到压强和能量密度的关系
+	\[P = \frac{1}{3}\omega\]
+	由于黑体内部的辐射是均匀的,内部的能量密度只是T的函数,黑体的内能函数$U(T,V)$可以表示为\[U(T,V)=\omega(T)V\]
+	利用\[dU = TdS-pdV\]
+	得到\[(\frac{\partial U}{\partial V})_T=T(\frac{\partial P}{\partial T})_V - P\]
+	利用压强和能量密度的关系,得到\[\omega = \frac{T}{3}\frac{d\omega}{dT}-\frac{\omega}{3}\]
+	接着\[T\frac{d\omega}{dT}=4\omega\]
+	则\[\omega=aT^4\]
+	开一个空,辐射通量$J_\omega$和$\omega$的关系为\[J_\omega=\frac{1}{4}c\omega\]
+	\[J_\omega = \frac{1}{4}caT^4=\sigma T^4\]
+	其数值为\[\sigma=5.670374419\times10^{-8}W\cdot m^{-2}\cdot K^{-4}\]
+	我们最小二乘法拟合的结果为\[\sigma=5.359\times10^{-8}W\cdot m^{-2}\cdot K^{-4}\]
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+	    $\delta( W\cdot m^{-2}\cdot K^{-4})$& $5.2698\times10^{-8}$ & $5.3183\times10^{-8}$ & $5.2124\times10^{-8}$ & $5.2323\times10^{-8}$ & 
+	    $5.2612\times10^{-8}$ \\
+		\hline
+		$\bar{\delta}( W\cdot m^{-2}\cdot K^{-4})$&\multicolumn{5}{c|}{$5.2588\times10^{-8}$} \\
+		\hline
+	\end{tabular}
+	\[S_\delta = \sqrt{\frac{\sum_i^N(\delta_i-\bar{\delta})}{N(N-1)}} =0.01796314028077504\times10^{-8}\]
+	\[\delta = (5.2588\pm 0.01796314028077504)\times10^{-8}\]
+	\section{韦恩位移定律}
+	\[u(\lambda)=\frac{8\pi hc}{\lambda^5}\frac{1}{e^{\frac{hc}{\lambda kT}}-1}\]
+	对$u(\lambda)$求导,得到
+	\[\frac{hc}{\lambda kT}\frac{e^{\frac{hc}{\lambda kT}}}{e^{\frac{hc}{\lambda kT}}-1}-5=0\]
+	\[\frac{xe^x}{e^x-1}-5=0\]
+	解得\[x = 4.965114231744276\]
+	\[\lambda_{max} = \frac{hc}{kx}\frac{1}{T}=\frac{2.8977721\times10^6nm\cdot K}{T}\]
+
+	\begin{table}[htbp]
+		\centering
+		\caption{测量数据表}
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			& 寄存器1 & 寄存器2 & 寄存器3 & 寄存器4 & 寄存器5 \\
+			\hline
+			$\lambda_{\max}$ & 1000   & 1006   & 1014   & 1020   & 1222   \\
+			\hline
+			$T$       & 2940   & 2860   & 2770   & 2720   & 2400   \\
+			\hline
+			$A$       & 2.940  & 2.877  & 2.809  & 2.774  & 2.933  \\
+			\hline
+			$\bar{A}$ & \multicolumn{5}{c|}{2.867}                             \\
+			\hline
+		\end{tabular}
+		\label{tab:data}
+	\end{table} 
+	
+	\[S_A = \sqrt{\frac{\sum_i^N(A_i-\bar{A})}{N(N-1)}} = 0.03295868783795858\]
+	则\[A = (2.867\pm 0.03295868783795858)\]
+	
+\end{document}

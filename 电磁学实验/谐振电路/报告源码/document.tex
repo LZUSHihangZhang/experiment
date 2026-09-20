@@ -1,0 +1,111 @@
+
+\documentclass[10pt,article,twocolumn]{report}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{ctex}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{lmodern}
+\usepackage{mathrsfs}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage{braket}
+\usepackage{adjustbox}
+\usepackage{footmisc}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\setlength{\parindent}{0pt}
+\title{谐振电路}
+\author{张世航}
+\begin{document}
+	\maketitle
+    \section{$I-f$串联谐振曲线}
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=0.7\linewidth]{1}
+    	\caption{$I-f$串联谐振曲线}
+    	\label{fig:1}
+    \end{figure}
+   \section{谐振频率}
+   对于串联谐振电路,我们有\[Z=\sqrt{R^2+(\omega L-\frac{1}{\omega C})^2}\]
+   于是回路中的电流为\[I=\frac{U}{Z}=\frac{U}{\sqrt{R^2+(\omega L -\frac{1}{\omega C})^2}}\]
+   于是我们发现在\[\omega L=\frac{1}{\omega C}\]
+   时电路达到谐振状态.我们可以解出谐振角频率为\[\omega=\omega_0=\frac{1}{\sqrt{LC}}\]
+   于是谐振频率为
+   \begin{align*}
+   	f&=\frac{1}{2\pi}\omega\\
+   	&=\frac{1}{2\pi\sqrt{LC}}\\
+   	&=\frac{1}{2\times\sqrt{0.1H\times4.7\times10^{-8}F}}\\
+   	&=2322.690947Hz
+   \end{align*}
+   由于我们只有有限多个数据点,因此我们需要利用拟合来得到函数,进而通过梯度下降的方法得到极值.在这里我们利用导数的零点来求解最大值.\\
+   \begin{figure}[H]
+   	\centering
+   	\includegraphics[width=0.7\linewidth]{5}
+   	\caption{拟合曲线}
+   	\label{fig:4}
+   \end{figure}
+   
+   \subsection{$R=200\Omega$}
+   \begin{figure}[H]
+   	\centering
+   	\includegraphics[width=0.7\linewidth]{2}
+   	\caption{$R=200\Omega$}
+   	\label{fig:2}
+   \end{figure}
+   得到极大值点为\[f=2323.4775454620694Hz\]
+   \subsection{$R=500\Omega$}
+   \begin{figure}[H]
+   	\centering
+   	\includegraphics[width=0.7\linewidth]{3}
+   	\caption{$R=500\Omega$}
+   	\label{fig:3}
+   	得到极大值点为\[f=2322.7463520988094Hz\]
+   \end{figure}
+   
+   很显然这两个值与我们得到的理论值相差很小.\\
+   \section{通频带宽度}
+   \begin{figure}[H]
+   	\centering
+   	\includegraphics[width=0.7\linewidth]{6}
+   	\caption{频带宽度}
+   	\label{fig:6}
+   \end{figure}
+   
+   $R=200\Omega$的频带宽度:$f_{200\Omega}$=433.41852706111786 Hz\\
+   $R=500\Omega$的频带宽度:$f_{500\Omega}$=905.8907175671729 Hz
+   \section{串联谐振电路的Q值}
+   \subsection{$R=200\Omega$的情况}
+   理论值
+   \begin{align*}
+   	Q&=\sqrt{\frac{L}{{(R+R_S+R_L)}^2C}}\\
+   	&=\sqrt{\frac{0.1}{(25+50+500)^2\times4.7\times10^{-8}}}\\
+   	&=2.53
+   \end{align*}
+   而\[Q=\frac{U_C}{U}=2.544\]
+   我们还可以利用频带宽度计算
+   \[Q=\frac{f_0}{\Delta f}=\frac{2323.4775Hz}{905.891Hz}=2.56\]
+   \subsection{$R=500\Omega$}
+   理论值
+   \begin{align*}
+   	Q&=\sqrt{\frac{L}{{(R+R_S+R_L)}^2C}}\\
+   	&=\sqrt{\frac{0.1}{(25+50+200)^2\times4.7\times10^{-8}}}\\
+   	&=5.30
+   \end{align*}
+   而\[Q=\frac{U_C}{U}=5.28\]
+   我们还可以利用频带宽度计算
+   \[Q=\frac{f_0}{\Delta f}=\frac{2322.746Hz}{433.4185Hz}=5.36\]
+\end{document}

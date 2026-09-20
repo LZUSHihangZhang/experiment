@@ -1,0 +1,106 @@
+% !TEX program = xelatex
+\documentclass[10pt, a4paper,twocolumn]{article}
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}       % UTF-8 encoding
+\usepackage[T1]{fontenc}          % Better font encoding
+\usepackage{lmodern}              % Modern Latin Modern font
+\usepackage{ctex}                 % Chinese support (must be loaded after fontenc)
+\usepackage{subcaption}
+% ===== Math & Symbols =====
+\usepackage{amsmath}              % Advanced math
+\usepackage{amssymb}              % Additional math symbols
+\usepackage{mathrsfs}             % Ralph Smith's Formal Script
+\usepackage{braket}               % Dirac bra-ket notation
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}             % Image support
+\usepackage{float}                % Better float control
+\usepackage{wrapfig}              % Wrapped figures
+\usepackage{tikz}                 % Vector graphics
+\usepackage[table]{xcolor}        % Colored tables
+\usepackage{array}                % Enhanced tables
+\usepackage{multirow}             % Multirow tables
+\usepackage{tabularx}             % Adjustable-width tables
+\usepackage{booktabs}             % Professional table lines
+\usepackage{siunitx}              % SI units in tables
+\usepackage{caption}              % Better captions
+\usepackage{adjustbox}            % Box resizing
+
+% ===== Code Listings =====
+\usepackage{listings}             % Code blocks
+\usepackage{tcolorbox}            % Colored boxes
+\tcbuselibrary{listings, breakable} % Listings in tcolorbox
+
+% ===== Misc =====
+\usepackage{lipsum}               % Dummy text
+\usepackage{footmisc}             % Better footnotes
+\usepackage[margin=1in]{geometry} % Page margins
+\usepackage{diagbox}
+\usepackage{ctex}
+\author{张世航}
+\title{磁光克尔效应}
+\begin{document}
+	\maketitle
+	\section{磁滞回线}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{1}
+		\caption{磁滞回线}
+		\label{fig:1}
+	\end{figure}
+	\section{角度定标}
+    \begin{figure}[H]
+        \centering
+		\includegraphics[width=0.7\linewidth]{2}
+		\caption{角度定标}
+		\label{fig:2}
+    \end{figure}
+    \section{螺旋测微器定标}
+    \begin{figure}[H]
+        \centering
+		\includegraphics[width=0.7\linewidth]{3}
+		\caption{螺旋测微器定标}
+		\label{fig:3}
+    \end{figure}
+    \section{磁感应强度定标}
+    \begin{figure}[H]
+        \centering
+		\includegraphics[width=0.7\linewidth]{4}
+		\caption{磁感应强度定标}
+		\label{fig:4}
+    \end{figure}
+	\section{数据处理}
+	我们注意到磁滞回线的横坐标为\(U_B(mV)\),纵坐标为S.E.V采样值\(U_{S.E.V}/mV\).\\
+	我们得到角度的标定最小二乘法拟合为
+	\begin{equation}
+		L(mm) = 16.60661\theta -24.6661
+	\end{equation}
+	我们得到螺旋测微器定标最小二乘法拟合为
+	\begin{equation}
+		U_{S.E.V}(V)= 6.09475L(mm)  -1.7143
+	\end{equation}
+	我们得到磁感应强度定标最小二乘法拟合为
+	\begin{equation}
+		B(mT)= 1250.00000U_B(V)  -1273.5000
+	\end{equation}
+	则
+	\begin{equation}
+		U_{S.E.V}(V) =6.09475(16.60661\theta -24.6661)-1.7143 
+	\end{equation}
+	可以反解出\(\theta\)的表达式
+	\begin{equation}
+		\theta = 1.50226 + 0.00988015 U_{S.E.V}(V)
+	\end{equation}	
+	画出此时的磁滞回线
+	\begin{figure}[H]
+        \centering
+		\includegraphics[width=0.7\linewidth]{1.1}
+		\caption{修正的磁滞回线}
+		\label{fig:1.1}
+    \end{figure}
+	我们可以计算角度的变化为0.0009089738000001013,换成角度为
+	\begin{equation}
+		\Delta\theta = \frac{0.0009089738000001013\times 180^o}{\pi}= 0.05208036331636961^o
+	\end{equation}
+	根据图片我们可以看到矫顽力值为-10.545mT.
+\end{document} 

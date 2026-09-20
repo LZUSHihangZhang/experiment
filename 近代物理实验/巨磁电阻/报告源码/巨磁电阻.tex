@@ -1,0 +1,318 @@
+% !TEX program = xelatex
+\documentclass[10pt,a4paper]{article}
+\usepackage{extarrows} 
+% ===== Essential Packages =====
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[UTF8, fontset=none]{ctex}
+\usepackage{xeCJK}
+\usepackage{enumitem}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
+
+% ===== Math & Symbols =====
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{braket}
+
+% ===== Graphics & Tables =====
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+
+% ===== Code Listings =====
+\usepackage{listings}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings, breakable}
+
+% ===== Misc =====
+\usepackage{lipsum}
+\usepackage{footmisc}
+\usepackage[margin=1in]{geometry}
+\usepackage{diagbox}
+\usepackage{mathtools}
+\usepackage{tensor}
+
+\lstset{
+	basicstyle=\small\ttfamily,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{green!60!black},
+	stringstyle=\color{red},
+	frame=single,
+	breaklines=true,
+	showstringspaces=false,
+	tabsize=2,
+	captionpos=b
+}
+\author{
+	张世航 \\
+	学号:320230938701 \\
+	\texttt{zhshihang2023@lzu.edu.cn}
+}
+\title{巨磁电阻}
+
+\begin{document}
+	\maketitle
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		线圈电流 I/A& 磁场\(B/mT= \frac{8\mu_0 NI}{5^{\frac{3}{2}}R} \)& 电压表
+		输出
+		V/V & $\frac{R_B}{R_0}=\frac{V_0(V_+-V)}{V(V_+-V_0)}$ & $\frac{R_B-R_0}{R_0}$ \\
+		\hline
+		0.000& 0. & 1.5875 & 1.0 & 0.0 \\
+		\hline
+		0.050& 0.08991763 & 1.5894 & 0.99824847 & -0.00175153 \\
+		\hline
+		0.100& 0.17983526 & 1.5934 & 0.99457469 & -0.00542531 \\
+		\hline
+		0.150& 0.26975289 & 1.5986 & 0.98982626 & -0.01017374 \\
+		\hline
+		0.200& 0.35967052 & 1.6045 & 0.9844759 & -0.0155241 \\
+		\hline
+		0.250& 0.44958815 & 1.6099 & 0.97961332 & -0.02038668 \\
+		\hline
+		0.300& 0.53950578 & 1.6153 & 0.97478326 & -0.02521674 \\
+		\hline
+		0.350& 0.62942341 & 1.621 & 0.96971977 & -0.03028023 \\
+		\hline
+		0.400& 0.71934104 & 1.6264 & 0.96495552 & -0.03504448 \\
+		\hline
+		0.450& 0.80925867 & 1.6318 & 0.96022281 & -0.03977719 \\
+		\hline
+		0.500& 0.8991763 & 1.637 & 0.95569489 & -0.04430511 \\
+		\hline
+		0.550& 0.98909393 & 1.6424 & 0.95102316 & -0.04897684 \\
+		\hline
+		0.600& 1.07901156 & 1.6478 & 0.94638206 & -0.05361794 \\
+		\hline
+		0.650& 1.16892919 & 1.6532 & 0.94177127 & -0.05822873 \\
+		\hline
+		0.700& 1.25884682 & 1.6584 & 0.93735963 & -0.06264037 \\
+		\hline
+		0.750& 1.34876445 & 1.6638 & 0.93280751 & -0.06719249 \\
+		\hline
+		0.800& 1.43868208 & 1.6688 & 0.92861884 & -0.07138116 \\
+		\hline
+		0.850& 1.52859971 & 1.6737 & 0.92453823 & -0.07546177 \\
+		\hline
+		0.900& 1.61851731 & 1.6787 & 0.9203989 & -0.0796011 \\
+		\hline
+		0.950& 1.70843494 & 1.6834 & 0.91653034 & -0.08346966 \\
+		\hline
+		1.000& 1.79835257 & 1.688 & 0.91276496 & -0.08723504 \\
+		\hline
+		1.050& 1.8882702 & 1.6925 & 0.90910124 & -0.09089876 \\
+		\hline
+		1.100& 1.97818783 & 1.6965 & 0.90586091 & -0.09413909 \\
+		\hline
+		1.150& 2.06810546 & 1.7007 & 0.90247498 & -0.09752502 \\
+		\hline
+		1.200& 2.15802309 & 1.7043 & 0.89958603 & -0.10041397 \\
+		\hline
+	\end{tabular}
+	\\
+    在图中我们可以看出\(|\frac{R_B-R_0}{R_0}|_{max}=0.10041397\)
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{B-R-1.pdf}
+			\caption{$\dfrac{R_B}{R_0}$ vs $B/T$部分数据的线性拟合}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{B-R.pdf}
+			\caption{$\dfrac{R_B}{R_0}$ vs $B/T$ 全体数据拟合}
+		\end{minipage}
+	\end{figure}
+    我们取出部分点得到第一张图，第二张图是原数据张图，我们可以看到我们找到了一段最佳拟合区域。
+
+	\begin{tabular}{|c|c|c|}
+		\hline
+		线圈电流 I/A & 磁场B/mT  & 传感器输出\(V_{\text{输出}}/{V}\) \\
+		\hline
+		0.000& 0. & 0 \\
+		\hline
+		0.050& 0.08991763 & 0.0042 \\
+		\hline
+		0.100& 0.17983526 & 0.0142 \\
+		\hline
+		0.150& 0.26975289 & 0.0266 \\
+		\hline
+		0.200& 0.35967052 & 0.0391 \\
+		\hline
+		0.250& 0.44958815 & 0.0513 \\
+		\hline
+		0.300& 0.53950578 & 0.0643 \\
+		\hline
+		0.350& 0.62942341 & 0.0769 \\
+		\hline
+		0.400& 0.71934104 & 0.0898 \\
+		\hline
+		0.450& 0.80925867 & 0.1020 \\
+		\hline
+		0.500& 0.8991763 & 0.1138 \\
+		\hline
+		0.550& 0.98909393 & 0.1258 \\
+		\hline
+		0.600& 1.07901156 & 0.1386 \\
+		\hline
+		0.650& 1.16892919 & 0.1507 \\
+		\hline
+		0.700& 1.25884682 & 0.1623 \\
+		\hline
+		0.750& 1.34876445 & 0.1741 \\
+		\hline
+		0.800& 1.43868208 & 0.1853 \\
+		\hline
+		0.850& 1.52859971 & 0.1965 \\
+		\hline
+		0.900& 1.61851731 & 0.2076 \\
+		\hline
+		0.950& 1.70843494 & 0.2188 \\
+		\hline
+		1.000& 1.79835257 & 0.2290 \\
+		\hline
+		1.050& 1.8882702 & 0.2386 \\
+		\hline
+		1.100& 1.97818783 & 0.2484 \\
+		\hline
+		1.150& 2.06810546 & 0.2576 \\
+		\hline
+		1.200& 2.15802309 & 0.2658 \\
+		\hline
+    \end{tabular}
+\\
+
+
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{B-V_output_2.pdf}
+			\caption{部分数据拟合：$V_{out} = 133.76\,B - 0.0077$}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.48\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{B-V_output.pdf}
+			\caption{全体数据拟合: $V_{\text{output}} = 129.15\,B - 0.0041$, $R^2 = 0.9982$}
+		\end{minipage}
+	\end{figure}
+可以得到 \(K = 133.76 V/T\),从而可以计算得到
+\begin{equation}\label{a}
+	\frac{K}{V_+} = \frac{133.76V/T}{5V} = 26.752 \frac{1}{T}
+\end{equation}
+\\
+	\begin{minipage}[t]{0.32\textwidth}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			被测电流 I/A&传感器输出电压 \(V_{\text{输出}}/V\)\\
+			\hline
+			0& 0  \\
+			\hline
+			0.5& 0  \\
+			\hline
+			1.0& 0.0007   \\
+			\hline
+			1.5& 0.0016  \\
+			\hline
+			2.0& 0.0022 \\
+			\hline
+			2.5& 0.0034  \\
+			\hline
+			3.0& 0.0046 \\
+			\hline
+			3.5& 0.0055  \\
+			\hline
+			4.0& 0.0075  \\
+			\hline
+			4.5& 0.0094    \\
+			\hline
+			5.0& 0.0105  \\
+			\hline
+		\end{tabular}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\begin{figure}[H]
+			\includegraphics[width=0.8\textwidth]{I-V_input.pdf}
+			\caption{Linear fit: $V_{\text{output}} = 0.0022\,I - 0.0014$, $R^2 = 0.9573$}
+		\end{figure}
+	\end{minipage}
+	\begin{equation}
+		K = 0.0022 V/A
+	\end{equation}
+	我们注意到拟合的效果非常差，因为我们的拟合区域并不在线性拟合的区域(\(V<0.0105V\),在我们前面的拟合我们将这些点舍弃掉了)，所以这一区域
+	想要和前面对照得到磁场是非常不合理的选择。要是想要得到非常好的结果需要在这一区域准确逐点制表，但是我们在做实验的时候注意到在这一区域出现
+	电压和电流都不稳的情况，这是因为电流巨大，温度迅速升高，导致我们的读数异常困难。
+	
+	\begin{itemize}
+		\item 思考题1:根据以上几个实验，分析如何利用传感器测量未知导线电流？
+		首先确定线性电流区域，绘制出\(V_{\text{输出}}-I\)的关系图，然后就可以比对输出电压测定未知导线电流；
+		对于非线性区域，测出大量点，但是不推荐这么做，因为这一区域仪器误差本身就很大。
+		\item 思考题2:根据实验三，求通电导线与传感器的距离？
+		根据导线磁场的公式
+		\begin{equation}
+			B = \frac{\mu_0 I}{2\pi r}
+		\end{equation}
+		根据
+		\begin{equation}
+			V_{\text{output}} = 0.0022\,I - 0.0014
+		\end{equation}
+		和
+		\begin{equation}
+			V_{output} = 133.76\,B - 0.0077
+		\end{equation}
+		如果我们假设上面两个式子后面的常数项的差没有影响，是一个很小的量，那么我们可以得到
+		\begin{equation}
+			d = 0.01215m = 12.15mm
+		\end{equation}
+	\end{itemize}
+	但是我们知道在非线性区域我们的线性拟合不准确，那么我们将使用我们测得的数字进行计算\\
+	\begin{tabular}{|c|c|c|c|}
+			\hline
+			被测电流 I/A&传感器输出电压 \(V_{\text{输出}}/V\)&磁场强度B/mT&通电导线和传感器的距离d/mm\\
+			\hline
+			0& 0  & 0.05757 & 0 \\
+			\hline
+			0.5& 0  & 0.05757 & 1.73714286 \\
+			\hline
+			1.0& 0.0007  & 0.06280 & 3.1847619 \\
+			\hline
+			1.5& 0.0016  & 0.06953 & 4.31483871 \\
+			\hline
+			2.0& 0.0022  & 0.07401 & 5.40444444 \\
+			\hline
+			2.5& 0.0034  & 0.08298 & 6.02522523 \\
+			\hline
+			3.0& 0.0046  & 0.09196 & 6.52487805 \\
+			\hline
+			3.5& 0.0055  & 0.09868 & 7.09333333 \\
+			\hline
+			4.0& 0.0075  & 0.11364 & 7.04 \\
+			\hline
+			4.5& 0.0094  & 0.12784 & 7.04 \\
+			\hline
+			5.0& 0.0105  & 0.13606 & 7.34945055 \\
+			\hline
+		\end{tabular}\\
+		我们认为后面的四组数据是准确的，取平均值大约7mm.
+\end{document}
